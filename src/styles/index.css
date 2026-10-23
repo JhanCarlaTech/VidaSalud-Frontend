@@ -1,0 +1,51 @@
+@import 'tailwindcss';
+
+/*
+ * Tokens de diseño – Minimalista Monocromático Premium (Diseño/Diseño frontend.md).
+ * Tailwind v4 genera una utilidad por token: bg-primario, text-suave, border-borde, etc.
+ */
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  --color-primario: #000000; /* Botones principales y estados activos */
+  --color-primario-hover: #27272a;
+  --color-fondo: #ffffff; /* Fondo de la página */
+  --color-superficie: #fafafa; /* Paneles y modales */
+  --color-gris: #f4f4f5; /* Fondos atenuados */
+  --color-texto: #09090b; /* Texto principal */
+  --color-suave: #71717a; /* Texto secundario */
+  --color-sutil: #a1a1aa; /* Placeholders y detalles */
+  --color-borde: #e4e4e7; /* Bordes y divisores ultra finos */
+
+  /* Estado de error: único color fuera de la escala de grises, siempre acompañado de texto */
+  --color-peligro: #b91c1c;
+  --color-peligro-fondo: #fef2f2;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --shadow-suave: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-fondo font-sans text-texto antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    letter-spacing: -0.02em;
+  }
+
+  /* Foco visible y de alto contraste para navegación por teclado */
+  :focus-visible {
+    outline: 2px solid var(--color-primario);
+    outline-offset: 2px;
+  }
+}
