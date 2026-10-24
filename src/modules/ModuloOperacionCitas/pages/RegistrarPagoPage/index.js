@@ -1,0 +1,1 @@
+export { RegistrarPagoPage } from './RegistrarPagoPage.view'

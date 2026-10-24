@@ -1,0 +1,1 @@
+export { RegistrarConsultaPage } from './RegistrarConsultaPage.view'

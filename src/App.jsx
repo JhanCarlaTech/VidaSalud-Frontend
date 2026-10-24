@@ -22,16 +22,19 @@ import { NoEncontradaPage } from './shared/pages/NoEncontradaPage'
 import { SinAccesoPage } from './shared/pages/SinAccesoPage'
 import { ROLES, RUTAS } from './shared/utils/constants'
 
-/** Providers globales y definición de rutas. */
+// Importaciones normales
+import { AgendaPage } from './modules/ModuloOperacionCitas/pages/AgendaPage'
+import { RegistrarConsultaPage } from './modules/ModuloOperacionCitas/pages/RegistrarConsultaPage'
+import { RegistrarPagoPage } from './modules/ModuloOperacionCitas/pages/RegistrarPagoPage' // <-- NUEVO
+
 export default function App() {
   return (
     <AuthProvider>
       <Routes>
-        {/* Visitantes: "/" lleva al login, o al panel del rol si ya hay sesión */}
+        {/* Visitantes */}
         <Route element={<PublicRoute />}>
           <Route path="/" element={<Navigate to={RUTAS.LOGIN} replace />} />
           <Route path={RUTAS.LOGIN} element={<LoginPage />} />
-          {/* CU11 – Autorregistro de pacientes */}
           <Route path={RUTAS.REGISTRO} element={<RegistroPage />} />
         </Route>
 
@@ -39,78 +42,68 @@ export default function App() {
         <Route element={<ProtectedRoute />}>
           <Route element={<MainLayout />}>
             <Route element={<ProtectedRoute roles={[ROLES.ADMINISTRADOR]} />}>
-              <Route
-                path={RUTAS.ADMIN_DASHBOARD}
-                element={<InicioPage titulo="Dashboard administrativo" descripcion="Configuración y supervisión general de la clínica." />}
-              />
+              <Route path={RUTAS.ADMIN_DASHBOARD} element={<InicioPage titulo="Dashboard administrativo" descripcion="Configuración y supervisión general de la clínica." />} />
             </Route>
 
-            {/* CU02 – Gestionar Usuarios y Asignar Roles */}
             <Route element={<ProtectedRoute permiso="usuarios_gestionar" />}>
               <Route path={RUTAS.ADMIN_USUARIOS} element={<UsuariosPage />} />
             </Route>
 
-            {/* CU03 – Gestionar Roles y Asignar Permisos */}
             <Route element={<ProtectedRoute permiso="roles_gestionar" />}>
               <Route path={RUTAS.ADMIN_ROLES} element={<RolesPage />} />
             </Route>
 
-            {/* CU07 – Gestionar Especialidades Médicas */}
             <Route element={<ProtectedRoute permiso="medicos_gestionar" />}>
               <Route path={RUTAS.ADMIN_ESPECIALIDADES} element={<EspecialidadesPage />} />
-              {/* CU08 – Gestionar Personal Médico */}
               <Route path={RUTAS.ADMIN_MEDICOS} element={<MedicosPage />} />
-              {/* CU09 – Horarios de cualquier médico (Administrador) */}
               <Route path={RUTAS.ADMIN_MEDICO_HORARIOS} element={<HorariosPage />} />
             </Route>
 
             <Route element={<ProtectedRoute roles={[ROLES.MEDICO]} />}>
-              <Route
-                path={RUTAS.MEDICO_AGENDA}
-                element={<InicioPage titulo="Mi agenda" descripcion="Sus citas asignadas y atenciones del día." />}
-              />
-              {/* CU09 – El médico gestiona su propia grilla */}
+              <Route path={RUTAS.MEDICO_AGENDA} element={<InicioPage titulo="Mi agenda" descripcion="Sus citas asignadas y atenciones del día." />} />
               <Route path={RUTAS.MEDICO_HORARIOS} element={<HorariosPage />} />
             </Route>
 
             <Route element={<ProtectedRoute roles={[ROLES.RECEPCIONISTA]} />}>
-              <Route
-                path={RUTAS.RECEPCION_AGENDA}
-                element={<InicioPage titulo="Agenda del día" descripcion="Citas programadas y control de asistencia." />}
-              />
+              <Route path={RUTAS.RECEPCION_AGENDA} element={<InicioPage titulo="Agenda del día" descripcion="Citas programadas y control de asistencia." />} />
             </Route>
 
             <Route element={<ProtectedRoute roles={[ROLES.PACIENTE]} />}>
-              <Route
-                path={RUTAS.PACIENTE_INICIO}
-                element={<InicioPage titulo="Mi espacio de salud" descripcion="Sus citas, reservas e historial de atenciones." />}
-              />
-              {/* CU11 – Mi ficha médica */}
+              <Route path={RUTAS.PACIENTE_INICIO} element={<InicioPage titulo="Mi espacio de salud" descripcion="Sus citas, reservas e historial de atenciones." />} />
               <Route path={RUTAS.PACIENTE_FICHA} element={<MiFichaPage />} />
-              {/* CU13 – El paciente reserva y consulta sus citas */}
               <Route path={RUTAS.PACIENTE_CITA_NUEVA} element={<AgendarCitaPage />} />
               <Route path={RUTAS.PACIENTE_CITAS} element={<MisCitasPage />} />
             </Route>
 
-            {/* CU11 – Gestionar Pacientes (Administrador y Recepcionista) */}
             <Route element={<ProtectedRoute permiso="pacientes_gestionar" />}>
               <Route path={RUTAS.PACIENTES} element={<PacientesPage />} />
             </Route>
 
-            {/* CU13 y CU14 – El personal agenda, reprograma y cancela citas de cualquier paciente */}
             <Route element={<ProtectedRoute permiso="citas_programar" />}>
               <Route path={RUTAS.CITAS} element={<CitasPage />} />
               <Route path={RUTAS.CITAS_NUEVA} element={<AgendarCitaPage />} />
             </Route>
 
-            {/* CU15 – Registrar Control de Asistencia */}
             <Route element={<ProtectedRoute permiso="asistencia_registrar" />}>
               <Route path={RUTAS.ASISTENCIA} element={<AsistenciaPage />} />
             </Route>
 
-            {/* CU05 – Configurar Perfil Personal (todos los roles) */}
-            <Route path={RUTAS.PERFIL} element={<PerfilPage />} />
+            {/* CU16 */}
+            <Route element={<ProtectedRoute roles={[ROLES.ADMINISTRADOR, ROLES.RECEPCIONISTA, ROLES.MEDICO]} />}>
+              <Route path={RUTAS.AGENDA} element={<AgendaPage />} />
+            </Route>
 
+            {/* CU17 */}
+            <Route element={<ProtectedRoute permiso="citas_atender" />}>
+              <Route path={RUTAS.CONSULTA_NUEVA} element={<RegistrarConsultaPage />} />
+            </Route>
+
+            {/* CU24 */}
+            <Route element={<ProtectedRoute roles={[ROLES.ADMINISTRADOR, ROLES.RECEPCIONISTA, ROLES.PACIENTE]} />}>
+              <Route path={RUTAS.PAGO_NUEVO} element={<RegistrarPagoPage />} />
+            </Route>
+
+            <Route path={RUTAS.PERFIL} element={<PerfilPage />} />
             <Route path={RUTAS.INICIO} element={<InicioPage titulo="Inicio" descripcion="Panel principal del sistema." />} />
           </Route>
         </Route>

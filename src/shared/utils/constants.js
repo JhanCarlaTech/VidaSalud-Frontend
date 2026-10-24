@@ -82,6 +82,11 @@ export const RUTAS = Object.freeze({
   MEDICO_AGENDA: '/medico/agenda',
   RECEPCION_AGENDA: '/recepcion/agenda',
   PACIENTE_INICIO: '/paciente/inicio',
+  
+  // --- RUTAS NUEVAS (CU16, CU17, CU24) ---
+  AGENDA: '/agenda',
+  CONSULTA_NUEVA: '/consultas/nueva',
+  PAGO_NUEVO: '/pagos/nuevo',
 })
 
 /** Opciones del menú lateral por rol. Cada caso de uso nuevo agrega aquí su entrada. */
@@ -93,23 +98,30 @@ export const MENU_POR_ROL = Object.freeze({
     { ruta: RUTAS.ADMIN_ESPECIALIDADES, etiqueta: 'Especialidades' },
     { ruta: RUTAS.ADMIN_MEDICOS, etiqueta: 'Médicos' },
     { ruta: RUTAS.PACIENTES, etiqueta: 'Pacientes' },
+    { ruta: RUTAS.AGENDA, etiqueta: 'Agenda Médica' }, // NUEVO CU16
     { ruta: RUTAS.CITAS, etiqueta: 'Citas' },
     { ruta: RUTAS.ASISTENCIA, etiqueta: 'Asistencia' },
+    { ruta: RUTAS.PAGO_NUEVO, etiqueta: 'Registrar Pago' }, // NUEVO CU24
   ],
   [ROLES.MEDICO]: [
     { ruta: RUTAS.MEDICO_AGENDA, etiqueta: 'Mi agenda' },
+    { ruta: RUTAS.AGENDA, etiqueta: 'Consultar Agenda' }, // NUEVO CU16
+    { ruta: RUTAS.CONSULTA_NUEVA, etiqueta: 'Registrar Consulta' }, // NUEVO CU17
     { ruta: RUTAS.MEDICO_HORARIOS, etiqueta: 'Mis horarios' },
   ],
   [ROLES.RECEPCIONISTA]: [
     { ruta: RUTAS.RECEPCION_AGENDA, etiqueta: 'Agenda del día' },
+    { ruta: RUTAS.AGENDA, etiqueta: 'Consultar Agenda' }, // NUEVO CU16
     { ruta: RUTAS.ASISTENCIA, etiqueta: 'Asistencia' },
     { ruta: RUTAS.CITAS, etiqueta: 'Citas' },
     { ruta: RUTAS.PACIENTES, etiqueta: 'Pacientes' },
+    { ruta: RUTAS.PAGO_NUEVO, etiqueta: 'Registrar Pago' }, // NUEVO CU24
   ],
   [ROLES.PACIENTE]: [
     { ruta: RUTAS.PACIENTE_INICIO, etiqueta: 'Inicio' },
     { ruta: RUTAS.PACIENTE_CITA_NUEVA, etiqueta: 'Reservar cita' },
     { ruta: RUTAS.PACIENTE_CITAS, etiqueta: 'Mis citas' },
     { ruta: RUTAS.PACIENTE_FICHA, etiqueta: 'Mi ficha médica' },
+    { ruta: RUTAS.PAGO_NUEVO, etiqueta: 'Pagar Cita' }, // NUEVO CU24
   ],
 })
