@@ -12,9 +12,11 @@ const ID_FORMULARIO = 'formulario-especialidad'
 const PATRON_NOMBRE = /^[\p{L}\s]+$/u // RN01
 const MAX_NOMBRE = 100
 const MAX_DESCRIPCION = 500
+const PRECIO_MAXIMO = 99999.99
+const PRECIO_POR_DEFECTO = '150'
 
 /** Validación en el cliente (E1). El servidor vuelve a validar siempre. */
-function validar({ nombre, descripcion }) {
+function validar({ nombre, descripcion, precio_consulta }) {
   const errores = {}
   const limpio = nombre.trim()
 
@@ -23,6 +25,11 @@ function validar({ nombre, descripcion }) {
   else if (!PATRON_NOMBRE.test(limpio)) errores.nombre = 'El nombre solo puede contener letras y espacios.'
 
   if (descripcion.length > MAX_DESCRIPCION) errores.descripcion = `La descripción no puede superar los ${MAX_DESCRIPCION} caracteres.`
+
+  const precio = Number(precio_consulta)
+  if (precio_consulta === '') errores.precio_consulta = 'Indique el precio de la consulta.'
+  else if (!Number.isFinite(precio) || precio < 0) errores.precio_consulta = 'El precio debe ser un número mayor o igual a 0.'
+  else if (precio > PRECIO_MAXIMO) errores.precio_consulta = 'El precio no puede superar Bs 99.999,99.'
 
   return errores
 }
@@ -37,6 +44,7 @@ export function EspecialidadFormModal({ especialidad, onCerrar, onGuardado }) {
   const [valores, setValores] = useState({
     nombre: especialidad?.nombre ?? '',
     descripcion: especialidad?.descripcion ?? '',
+    precio_consulta: especialidad ? String(especialidad.precio_consulta) : PRECIO_POR_DEFECTO,
   })
   const [errores, setErrores] = useState({})
   const [errorGeneral, setErrorGeneral] = useState('')
@@ -56,7 +64,11 @@ export function EspecialidadFormModal({ especialidad, onCerrar, onGuardado }) {
     setErrores(erroresLocales)
     if (Object.keys(erroresLocales).length > 0) return
 
-    const datos = { nombre: valores.nombre.trim(), descripcion: valores.descripcion.trim() || null }
+    const datos = {
+      nombre: valores.nombre.trim(),
+      descripcion: valores.descripcion.trim() || null,
+      precio_consulta: Number(valores.precio_consulta),
+    }
 
     setEnviando(true)
     try {
@@ -109,6 +121,20 @@ export function EspecialidadFormModal({ especialidad, onCerrar, onGuardado }) {
             onChange={manejarCambio}
             error={errores.descripcion}
           />
+          <div className="sm:w-1/2">
+            {/* CU24: monto que se cobra al reservar una cita en línea */}
+            <Input
+              etiqueta="Precio de la consulta (Bs)"
+              name="precio_consulta"
+              type="number"
+              inputMode="decimal"
+              min="0"
+              step="0.01"
+              value={valores.precio_consulta}
+              onChange={manejarCambio}
+              error={errores.precio_consulta}
+            />
+          </div>
         </fieldset>
 
         {!esNueva && (

@@ -49,3 +49,33 @@
     outline-offset: 2px;
   }
 }
+
+/* Página principal: aparición suave de las secciones al hacer scroll (<Revelar>). */
+@layer components {
+  .revelar {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.7s ease,
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .revelar-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Trama de puntos de fondo para las secciones destacadas */
+  .fondo-puntos {
+    background-image: radial-gradient(var(--color-borde) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .revelar {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

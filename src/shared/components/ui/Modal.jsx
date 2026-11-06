@@ -5,8 +5,9 @@ import { createPortal } from 'react-dom'
  * Ventana modal accesible: se cierra con Escape o al pulsar fuera, bloquea
  * el desplazamiento del fondo y lleva el foco al diálogo al abrirse.
  * En móvil se muestra como hoja inferior.
+ * @param {'md' | 'xl'} ancho  'xl' para contenidos amplios, como el asistente de reserva.
  */
-export function Modal({ abierto, titulo, descripcion, onCerrar, pie, children }) {
+export function Modal({ abierto, titulo, descripcion, onCerrar, pie, ancho = 'md', children }) {
   const idTitulo = useId()
   const dialogo = useRef(null)
   // Referencia estable: el efecto de apertura no debe repetirse (y robar el foco) en cada render.
@@ -45,7 +46,7 @@ export function Modal({ abierto, titulo, descripcion, onCerrar, pie, children })
         aria-modal="true"
         aria-labelledby={idTitulo}
         tabIndex={-1}
-        className="flex max-h-[92vh] w-full max-w-xl flex-col rounded-t-md bg-white shadow-suave outline-none sm:rounded-md"
+        className={`flex max-h-[92vh] w-full ${ancho === 'xl' ? 'max-w-6xl' : 'max-w-xl'} flex-col rounded-t-md bg-white shadow-suave outline-none sm:rounded-md`}
       >
         <header className="flex items-start justify-between gap-4 border-b border-borde px-6 py-4">
           <div className="flex flex-col gap-1">

@@ -4,6 +4,7 @@ import { Button } from '../../../../shared/components/ui/Button'
 import { DataTable } from '../../../../shared/components/ui/DataTable'
 import { Input } from '../../../../shared/components/ui/Input'
 import { Select } from '../../../../shared/components/ui/Select'
+import { formatearMoneda } from '../../../../shared/utils/formatters'
 import { CambiarEstadoEspecialidadModal } from './components/CambiarEstadoEspecialidadModal'
 import { EspecialidadFormModal } from './components/EspecialidadFormModal'
 import { useEspecialidadesPage } from './EspecialidadesPage'
@@ -31,6 +32,11 @@ export function EspecialidadesPage() {
           {especialidad.descripcion && <span className="text-suave">{especialidad.descripcion}</span>}
         </div>
       ),
+    },
+    {
+      clave: 'precio',
+      titulo: 'Consulta',
+      render: (especialidad) => <span className="tabular-nums">{formatearMoneda(especialidad.precio_consulta)}</span>,
     },
     {
       clave: 'medicos',
