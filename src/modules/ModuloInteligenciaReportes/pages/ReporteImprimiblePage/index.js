@@ -1,0 +1,1 @@
+export { ReporteImprimiblePage } from './ReporteImprimiblePage'

@@ -31,6 +31,14 @@ export function formatearFecha(iso) {
   return iso ? FORMATO_FECHA.format(new Date(iso)) : '—'
 }
 
+/**
+ * Fecha sin hora: '2026-11-27' → '27 de noviembre de 2026'. Se fija el mediodía
+ * porque new Date('2026-11-27') se interpreta en UTC y en Bolivia mostraría el día 26.
+ */
+export function formatearDia(fecha, opciones = { dateStyle: 'long' }) {
+  return fecha ? new Intl.DateTimeFormat('es-BO', opciones).format(new Date(`${fecha}T12:00:00`)) : '—'
+}
+
 /** '2026-10-23T12:00:00-04:00' → '23 oct 2026, 12:00' */
 export function formatearFechaHora(iso) {
   return iso ? FORMATO_FECHA_HORA.format(new Date(iso)) : '—'

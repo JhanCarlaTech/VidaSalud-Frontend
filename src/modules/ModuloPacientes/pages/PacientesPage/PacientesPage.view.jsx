@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../../ModuloSeguridad/hooks/useAuth'
 import { Alert } from '../../../../shared/components/ui/Alert'
 import { Badge } from '../../../../shared/components/ui/Badge'
 import { Button } from '../../../../shared/components/ui/Button'
@@ -5,6 +7,7 @@ import { DataTable } from '../../../../shared/components/ui/DataTable'
 import { Input } from '../../../../shared/components/ui/Input'
 import { Pagination } from '../../../../shared/components/ui/Pagination'
 import { Select } from '../../../../shared/components/ui/Select'
+import { RUTAS } from '../../../../shared/utils/constants'
 import { CambiarEstadoPacienteModal } from './components/CambiarEstadoPacienteModal'
 import { PacienteFormModal } from './components/PacienteFormModal'
 import { usePacientesPage } from './PacientesPage'
@@ -21,6 +24,8 @@ const OPCIONES_ESTADO = [
 export function PacientesPage() {
   const pagina = usePacientesPage()
   const { filtros, modal } = pagina
+  const { canAccess } = useAuth()
+  const navigate = useNavigate()
 
   const columnas = [
     {
@@ -75,6 +80,12 @@ export function PacientesPage() {
           <Button variante="secundario" tamano="sm" onClick={() => pagina.abrirEdicion(paciente)}>
             Editar
           </Button>
+          {/* CU12: solo quien gestiona antecedentes (Administrador; la Recepcionista no) */}
+          {canAccess('enfermedades_gestionar') && (
+            <Button variante="secundario" tamano="sm" onClick={() => navigate(`${RUTAS.ANTECEDENTES}?paciente=${paciente.id}`)}>
+              Antecedentes
+            </Button>
+          )}
           <Button variante="secundario" tamano="sm" onClick={() => pagina.abrirCambioEstado(paciente)}>
             {paciente.activo ? 'Desactivar' : 'Activar'}
           </Button>

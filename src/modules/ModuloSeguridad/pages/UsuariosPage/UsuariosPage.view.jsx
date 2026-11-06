@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import { Alert } from '../../../../shared/components/ui/Alert'
 import { Badge } from '../../../../shared/components/ui/Badge'
 import { Button } from '../../../../shared/components/ui/Button'
@@ -5,6 +6,7 @@ import { DataTable } from '../../../../shared/components/ui/DataTable'
 import { Input } from '../../../../shared/components/ui/Input'
 import { Pagination } from '../../../../shared/components/ui/Pagination'
 import { Select } from '../../../../shared/components/ui/Select'
+import { RUTAS } from '../../../../shared/utils/constants'
 import { etiquetaRol } from '../../../../shared/utils/formatters'
 import { useAuth } from '../../hooks/useAuth'
 import { CambiarEstadoModal } from './components/CambiarEstadoModal'
@@ -21,7 +23,8 @@ const OPCIONES_ESTADO = [
  * CU02 – Gestionar Usuarios y Asignar Roles.
  */
 export function UsuariosPage() {
-  const { usuario: usuarioActual } = useAuth()
+  const { usuario: usuarioActual, canAccess } = useAuth()
+  const navigate = useNavigate()
   const pagina = useUsuariosPage()
   const { filtros, roles, modal } = pagina
 
@@ -88,7 +91,15 @@ export function UsuariosPage() {
           <h1 className="text-3xl font-semibold">Usuarios</h1>
           <p className="text-suave">Registre cuentas, asigne roles y controle el acceso al sistema.</p>
         </div>
-        <Button onClick={pagina.abrirNuevo}>Nuevo usuario</Button>
+        <div className="flex flex-wrap gap-3">
+          {/* CU04: solo con el permiso de importación */}
+          {canAccess('usuarios_importar') && (
+            <Button variante="secundario" onClick={() => navigate(RUTAS.ADMIN_USUARIOS_IMPORTAR)}>
+              Carga por lotes
+            </Button>
+          )}
+          <Button onClick={pagina.abrirNuevo}>Nuevo usuario</Button>
+        </div>
       </header>
 
       {pagina.aviso && <Alert>{pagina.aviso}</Alert>}

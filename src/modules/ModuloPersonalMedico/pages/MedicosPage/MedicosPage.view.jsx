@@ -76,6 +76,10 @@ export function MedicosPage() {
           <Button variante="secundario" tamano="sm" onClick={() => navigate(RUTAS.ADMIN_MEDICO_HORARIOS.replace(':id', medico.id))}>
             Horarios
           </Button>
+          {/* CU10: licencias del médico */}
+          <Button variante="secundario" tamano="sm" onClick={() => navigate(`${RUTAS.ADMIN_LICENCIAS}?medico=${medico.id}`)}>
+            Licencias
+          </Button>
           <Button variante="secundario" tamano="sm" onClick={() => pagina.abrirCambioEstado(medico)}>
             {medico.activo ? 'Desactivar' : 'Activar'}
           </Button>

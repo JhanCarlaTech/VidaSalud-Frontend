@@ -16,8 +16,12 @@ export const PERMISOS_OBLIGATORIOS_ADMIN = Object.freeze(['usuarios_gestionar', 
 export const GRUPO_PERMISO = Object.freeze({
   usuarios: 'Seguridad',
   roles: 'Seguridad',
+  bitacora: 'Seguridad',
   medicos: 'Personal médico',
   pacientes: 'Pacientes',
+  enfermedades: 'Pacientes',
+  historial: 'Atención clínica',
+  notificaciones: 'Notificaciones y reportes',
   citas: 'Citas médicas',
   reportes: 'Reportes',
 })
@@ -60,6 +64,7 @@ export const ETIQUETA_ROL = Object.freeze({
  * devuelve el backend en `ruta_inicio` (AuthService::RUTAS_INICIO).
  */
 export const RUTAS = Object.freeze({
+  SITIO: '/',
   LOGIN: '/login',
   REGISTRO: '/registro',
   SIN_ACCESO: '/sin-acceso',
@@ -67,13 +72,29 @@ export const RUTAS = Object.freeze({
   PERFIL: '/perfil',
   ADMIN_DASHBOARD: '/admin/dashboard',
   ADMIN_USUARIOS: '/admin/usuarios',
+  ADMIN_USUARIOS_IMPORTAR: '/admin/usuarios/importar',
   ADMIN_ROLES: '/admin/roles',
+  ADMIN_BITACORA: '/admin/bitacora',
   ADMIN_ESPECIALIDADES: '/admin/especialidades',
   ADMIN_MEDICOS: '/admin/medicos',
   ADMIN_MEDICO_HORARIOS: '/admin/medicos/:id/horarios',
   MEDICO_HORARIOS: '/medico/horarios',
+  ADMIN_LICENCIAS: '/admin/licencias',
+  MEDICO_LICENCIAS: '/medico/licencias',
   PACIENTES: '/pacientes',
   PACIENTE_FICHA: '/paciente/ficha',
+  ENFERMEDADES: '/enfermedades',
+  MEDICO_RECETAS: '/medico/recetas',
+  MEDICO_HISTORIAL: '/medico/historial',
+  MEDICO_HISTORIAL_PACIENTE: '/medico/historial/:id',
+  PACIENTE_HISTORIAL: '/paciente/historial',
+  NOTIFICACIONES: '/notificaciones',
+  REPORTES: '/reportes',
+  REPORTE_IMPRIMIR: '/reportes/imprimir',
+  REPORTES_VOZ: '/reportes/voz',
+  PACIENTE_NOTIFICACIONES: '/paciente/notificaciones',
+  RECETA_IMPRIMIR: '/recetas/:id/imprimir',
+  ANTECEDENTES: '/antecedentes',
   CITAS: '/citas',
   ASISTENCIA: '/asistencia',
   CITAS_NUEVA: '/citas/nueva',
@@ -89,39 +110,73 @@ export const RUTAS = Object.freeze({
   PAGO_NUEVO: '/pagos/nuevo',
 })
 
-/** Opciones del menú lateral por rol. Cada caso de uso nuevo agrega aquí su entrada. */
+/** Módulos del sistema, en el orden en que aparecen en el menú lateral. */
+export const MODULOS = Object.freeze({
+  SEGURIDAD: 'Acceso y seguridad',
+  PERSONAL_MEDICO: 'Personal médico',
+  PACIENTES: 'Pacientes',
+  OPERACION_CITAS: 'Operación de citas',
+  ATENCION_CLINICA: 'Atención clínica',
+  INTELIGENCIA: 'Notificaciones y reportes',
+})
+
+/**
+ * Opciones del menú lateral por rol. Cada caso de uso nuevo agrega aquí su entrada
+ * con el módulo al que pertenece; las páginas de inicio no llevan módulo y van sueltas.
+ */
 export const MENU_POR_ROL = Object.freeze({
   [ROLES.ADMINISTRADOR]: [
     { ruta: RUTAS.ADMIN_DASHBOARD, etiqueta: 'Dashboard' },
-    { ruta: RUTAS.ADMIN_USUARIOS, etiqueta: 'Usuarios' },
-    { ruta: RUTAS.ADMIN_ROLES, etiqueta: 'Roles y permisos' },
-    { ruta: RUTAS.ADMIN_ESPECIALIDADES, etiqueta: 'Especialidades' },
-    { ruta: RUTAS.ADMIN_MEDICOS, etiqueta: 'Médicos' },
-    { ruta: RUTAS.PACIENTES, etiqueta: 'Pacientes' },
-    { ruta: RUTAS.AGENDA, etiqueta: 'Agenda Médica' }, // NUEVO CU16
-    { ruta: RUTAS.CITAS, etiqueta: 'Citas' },
-    { ruta: RUTAS.ASISTENCIA, etiqueta: 'Asistencia' },
-    { ruta: RUTAS.PAGO_NUEVO, etiqueta: 'Registrar Pago' }, // NUEVO CU24
+    { ruta: RUTAS.ADMIN_USUARIOS, etiqueta: 'Usuarios', modulo: MODULOS.SEGURIDAD },
+    { ruta: RUTAS.ADMIN_ROLES, etiqueta: 'Roles y permisos', modulo: MODULOS.SEGURIDAD },
+    { ruta: RUTAS.ADMIN_BITACORA, etiqueta: 'Bitácora', modulo: MODULOS.SEGURIDAD },
+    { ruta: RUTAS.ADMIN_ESPECIALIDADES, etiqueta: 'Especialidades', modulo: MODULOS.PERSONAL_MEDICO },
+    { ruta: RUTAS.ADMIN_MEDICOS, etiqueta: 'Médicos', modulo: MODULOS.PERSONAL_MEDICO },
+    { ruta: RUTAS.ADMIN_LICENCIAS, etiqueta: 'Licencias', modulo: MODULOS.PERSONAL_MEDICO },
+    { ruta: RUTAS.PACIENTES, etiqueta: 'Pacientes', modulo: MODULOS.PACIENTES },
+    { ruta: RUTAS.ANTECEDENTES, etiqueta: 'Antecedentes', modulo: MODULOS.PACIENTES },
+    { ruta: RUTAS.ENFERMEDADES, etiqueta: 'Enfermedades', modulo: MODULOS.PACIENTES },
+    { ruta: RUTAS.AGENDA, etiqueta: 'Agenda Médica', modulo: MODULOS.OPERACION_CITAS }, // NUEVO CU16
+    { ruta: RUTAS.CITAS, etiqueta: 'Citas', modulo: MODULOS.OPERACION_CITAS },
+    { ruta: RUTAS.ASISTENCIA, etiqueta: 'Asistencia', modulo: MODULOS.OPERACION_CITAS },
+    { ruta: RUTAS.PAGO_NUEVO, etiqueta: 'Registrar Pago', modulo: MODULOS.OPERACION_CITAS }, // NUEVO CU24
+    { ruta: RUTAS.NOTIFICACIONES, etiqueta: 'Notificaciones', modulo: MODULOS.INTELIGENCIA },
+    { ruta: RUTAS.REPORTES, etiqueta: 'Reportes', modulo: MODULOS.INTELIGENCIA },
+    { ruta: RUTAS.REPORTES_VOZ, etiqueta: 'Reportes por voz', modulo: MODULOS.INTELIGENCIA },
   ],
   [ROLES.MEDICO]: [
     { ruta: RUTAS.MEDICO_AGENDA, etiqueta: 'Mi agenda' },
-    { ruta: RUTAS.AGENDA, etiqueta: 'Consultar Agenda' }, // NUEVO CU16
-    { ruta: RUTAS.CONSULTA_NUEVA, etiqueta: 'Registrar Consulta' }, // NUEVO CU17
-    { ruta: RUTAS.MEDICO_HORARIOS, etiqueta: 'Mis horarios' },
+    { ruta: RUTAS.AGENDA, etiqueta: 'Consultar Agenda', modulo: MODULOS.OPERACION_CITAS }, // NUEVO CU16
+    { ruta: RUTAS.CONSULTA_NUEVA, etiqueta: 'Registrar Consulta', modulo: MODULOS.OPERACION_CITAS }, // NUEVO CU17
+    { ruta: RUTAS.MEDICO_HISTORIAL, etiqueta: 'Mis pacientes', modulo: MODULOS.ATENCION_CLINICA },
+    { ruta: RUTAS.MEDICO_RECETAS, etiqueta: 'Recetas', modulo: MODULOS.ATENCION_CLINICA },
+    // CU21: el médico ve solo sus propios reportes (alcance personal en el servidor).
+    { ruta: RUTAS.REPORTES, etiqueta: 'Mis reportes', modulo: MODULOS.INTELIGENCIA },
+    { ruta: RUTAS.REPORTES_VOZ, etiqueta: 'Reportes por voz', modulo: MODULOS.INTELIGENCIA },
+    { ruta: RUTAS.MEDICO_HORARIOS, etiqueta: 'Mis horarios', modulo: MODULOS.PERSONAL_MEDICO },
+    { ruta: RUTAS.MEDICO_LICENCIAS, etiqueta: 'Mis licencias', modulo: MODULOS.PERSONAL_MEDICO },
+    { ruta: RUTAS.ANTECEDENTES, etiqueta: 'Antecedentes', modulo: MODULOS.PACIENTES },
+    { ruta: RUTAS.ENFERMEDADES, etiqueta: 'Enfermedades', modulo: MODULOS.PACIENTES },
   ],
   [ROLES.RECEPCIONISTA]: [
     { ruta: RUTAS.RECEPCION_AGENDA, etiqueta: 'Agenda del día' },
-    { ruta: RUTAS.AGENDA, etiqueta: 'Consultar Agenda' }, // NUEVO CU16
-    { ruta: RUTAS.ASISTENCIA, etiqueta: 'Asistencia' },
-    { ruta: RUTAS.CITAS, etiqueta: 'Citas' },
-    { ruta: RUTAS.PACIENTES, etiqueta: 'Pacientes' },
-    { ruta: RUTAS.PAGO_NUEVO, etiqueta: 'Registrar Pago' }, // NUEVO CU24
+    { ruta: RUTAS.AGENDA, etiqueta: 'Consultar Agenda', modulo: MODULOS.OPERACION_CITAS }, // NUEVO CU16
+    { ruta: RUTAS.ASISTENCIA, etiqueta: 'Asistencia', modulo: MODULOS.OPERACION_CITAS },
+    { ruta: RUTAS.CITAS, etiqueta: 'Citas', modulo: MODULOS.OPERACION_CITAS },
+    { ruta: RUTAS.PACIENTES, etiqueta: 'Pacientes', modulo: MODULOS.PACIENTES },
+    { ruta: RUTAS.PAGO_NUEVO, etiqueta: 'Registrar Pago', modulo: MODULOS.OPERACION_CITAS }, // NUEVO CU24
+    { ruta: RUTAS.NOTIFICACIONES, etiqueta: 'Notificaciones', modulo: MODULOS.INTELIGENCIA },
+    { ruta: RUTAS.REPORTES, etiqueta: 'Reportes', modulo: MODULOS.INTELIGENCIA },
+    { ruta: RUTAS.REPORTES_VOZ, etiqueta: 'Reportes por voz', modulo: MODULOS.INTELIGENCIA },
   ],
   [ROLES.PACIENTE]: [
     { ruta: RUTAS.PACIENTE_INICIO, etiqueta: 'Inicio' },
-    { ruta: RUTAS.PACIENTE_CITA_NUEVA, etiqueta: 'Reservar cita' },
-    { ruta: RUTAS.PACIENTE_CITAS, etiqueta: 'Mis citas' },
-    { ruta: RUTAS.PACIENTE_FICHA, etiqueta: 'Mi ficha médica' },
-    { ruta: RUTAS.PAGO_NUEVO, etiqueta: 'Pagar Cita' }, // NUEVO CU24
+    // CU20: siempre visible, con el número de notificaciones sin leer.
+    { ruta: RUTAS.PACIENTE_NOTIFICACIONES, etiqueta: 'Notificaciones', contador: 'notificaciones' },
+    { ruta: RUTAS.PACIENTE_CITA_NUEVA, etiqueta: 'Reservar cita', modulo: MODULOS.OPERACION_CITAS },
+    { ruta: RUTAS.PACIENTE_CITAS, etiqueta: 'Mis citas', modulo: MODULOS.OPERACION_CITAS },
+    { ruta: RUTAS.PACIENTE_FICHA, etiqueta: 'Mi ficha médica', modulo: MODULOS.PACIENTES },
+    { ruta: RUTAS.PACIENTE_HISTORIAL, etiqueta: 'Mi historial', modulo: MODULOS.ATENCION_CLINICA },
+    { ruta: RUTAS.PAGO_NUEVO, etiqueta: 'Pagar Cita', modulo: MODULOS.OPERACION_CITAS }, // NUEVO CU24
   ],
 })

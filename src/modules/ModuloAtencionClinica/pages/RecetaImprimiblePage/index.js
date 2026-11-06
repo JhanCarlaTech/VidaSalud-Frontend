@@ -1,0 +1,1 @@
+export { RecetaImprimiblePage } from './RecetaImprimiblePage'
