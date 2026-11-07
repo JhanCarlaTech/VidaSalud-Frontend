@@ -33,7 +33,7 @@ export function RecetasConsultaModal({ consulta, onCerrar }) {
 
       <ul className="flex flex-col gap-3">
         {recetas.map((receta) => (
-          <li key={receta.id} className="flex flex-col gap-2 rounded-sm border border-borde p-4">
+          <li key={receta.id} className="flex flex-col gap-2 rounded-lg border border-borde p-4">
             <div className="flex flex-wrap items-center justify-between gap-2">
               <p className="font-mono font-semibold">{receta.numero}</p>
               <span className="text-sm text-suave">{formatearFechaHora(receta.fecha_emision)}</span>
@@ -42,7 +42,7 @@ export function RecetasConsultaModal({ consulta, onCerrar }) {
             <div>
               <Link
                 to={rutaImprimir(receta.id)}
-                className="inline-flex min-h-9 items-center rounded-sm border border-borde px-3 py-1.5 text-sm font-semibold hover:border-primario"
+                className="inline-flex min-h-9 items-center rounded-lg border border-borde px-3 py-1.5 text-sm font-semibold hover:border-primario"
               >
                 Ver e imprimir
               </Link>

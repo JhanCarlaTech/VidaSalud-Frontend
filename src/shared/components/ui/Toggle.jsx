@@ -9,7 +9,7 @@ export function Toggle({ etiqueta, descripcion, activo, onCambiar, disabled = fa
   const idDescripcion = useId()
 
   return (
-    <div className="flex items-center justify-between gap-4 rounded-sm border border-borde px-4 py-3">
+    <div className="flex items-center justify-between gap-4 rounded-lg border border-borde px-4 py-3">
       <div className="flex flex-col gap-0.5">
         <span id={idEtiqueta} className="text-sm font-medium">
           {etiqueta}

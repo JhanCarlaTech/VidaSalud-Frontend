@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { Alert } from '../../../../shared/components/ui/Alert'
 import { Button } from '../../../../shared/components/ui/Button'
 import { Input } from '../../../../shared/components/ui/Input'
+import { BotonTema } from '../../../../shared/components/ui/BotonTema'
 import { Logo } from '../../../../shared/components/ui/Logo'
 import { RUTAS } from '../../../../shared/utils/constants'
 import { useLoginPage } from './LoginPage'
@@ -24,18 +25,19 @@ export function LoginPage() {
   return (
     <div className="grid min-h-full lg:grid-cols-2">
       {/* Panel de marca: negro puro, alto contraste (solo escritorio) */}
-      <aside className="hidden flex-col justify-between bg-primario p-12 text-white lg:flex">
+      <aside className="hidden flex-col justify-between bg-marca p-12 text-sobre-marca lg:flex">
         <Link to={RUTAS.SITIO} className="w-fit" aria-label="Vida Salud, ir a la página principal">
           <Logo invertido />
         </Link>
         <div className="flex max-w-md flex-col gap-4">
           <h2 className="text-4xl leading-tight font-semibold">Gestión clínica, simple y precisa.</h2>
-          <p className="text-sutil">Citas, agenda médica, historial clínico y pagos en un solo lugar.</p>
+          <p className="text-sobre-marca/70">Citas, agenda médica, historial clínico y pagos en un solo lugar.</p>
         </div>
-        <p className="text-xs text-sutil">© {new Date().getFullYear()} Clínica Vida Salud</p>
+        <p className="text-xs text-sobre-marca/70">© {new Date().getFullYear()} Clínica Vida Salud</p>
       </aside>
 
-      <main className="flex items-center justify-center px-4 py-8">
+      <main className="relative flex items-center justify-center px-4 py-8">
+        <BotonTema className="absolute top-4 right-4" />
         <form className="flex w-full max-w-[380px] flex-col gap-6" onSubmit={manejarEnvio} noValidate>
           <div className="lg:hidden">
             <Logo />
@@ -80,7 +82,7 @@ export function LoginPage() {
                 type="button"
                 onClick={alternarVerContrasena}
                 aria-pressed={verContrasena}
-                className="cursor-pointer rounded-sm px-2 py-1 text-xs font-semibold text-suave hover:text-texto"
+                className="cursor-pointer rounded-lg px-2 py-1 text-xs font-semibold text-suave hover:text-texto"
               >
                 {verContrasena ? 'Ocultar' : 'Mostrar'}
               </button>

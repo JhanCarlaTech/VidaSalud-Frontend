@@ -4,6 +4,7 @@ import { useNoLeidas } from '../../../modules/ModuloInteligenciaReportes/hooks/u
 import { useAuth } from '../../../modules/ModuloSeguridad/hooks/useAuth'
 import { MENU_POR_ROL, MODULOS, RUTAS } from '../../utils/constants'
 import { etiquetaRol, iniciales } from '../../utils/formatters'
+import { BotonTema } from '../ui/BotonTema'
 import { Button } from '../ui/Button'
 import { Logo } from '../ui/Logo'
 
@@ -26,8 +27,11 @@ function agruparPorModulo(opciones) {
 }
 
 function clasesEnlace({ isActive }) {
-  const base = 'flex items-center justify-between gap-2 rounded-sm px-3 py-2 text-sm font-medium transition-colors'
-  return isActive ? `${base} bg-primario text-white` : `${base} text-suave hover:bg-gris hover:text-texto`
+  // Activa: fondo azul suave, texto azul y borde izquierdo de 3 px.
+  const base = 'flex items-center justify-between gap-2 rounded-lg border-l-[3px] px-3 py-2 text-sm font-medium transition-colors'
+  return isActive
+    ? `${base} border-primario bg-primario-suave font-semibold text-primario`
+    : `${base} border-transparent text-suave hover:bg-superficie-subtil hover:text-texto`
 }
 
 /** Texto de la opción con su contador, si lo tiene (CU20: notificaciones sin leer). */
@@ -38,7 +42,7 @@ function EtiquetaOpcion({ opcion, contadores }) {
     <>
       {opcion.etiqueta}
       {cantidad > 0 && (
-        <span className="grid min-w-5 place-items-center rounded-full bg-peligro px-1.5 text-xs leading-5 font-semibold text-white">
+        <span className="grid min-w-5 place-items-center rounded-full bg-peligro px-1.5 text-xs leading-5 font-semibold text-sobre-peligro">
           {cantidad > 99 ? '99+' : cantidad}
           <span className="sr-only"> sin leer</span>
         </span>
@@ -67,7 +71,7 @@ function GrupoModulo({ modulo, opciones, contadores }) {
         aria-expanded={abierto}
         aria-controls={idSubmenu}
         onClick={() => setAbiertoManual(!abierto)}
-        className={`flex w-full items-center justify-between gap-2 rounded-sm px-3 py-2 text-left text-sm font-semibold transition-colors hover:bg-gris ${contieneActiva ? 'text-texto' : 'text-suave hover:text-texto'}`}
+        className={`flex w-full items-center justify-between gap-2 rounded-lg border-l-[3px] border-transparent px-3 py-2 text-left text-sm font-semibold transition-colors hover:bg-superficie-subtil ${contieneActiva ? 'text-texto' : 'text-suave hover:text-texto'}`}
       >
         <span className="flex items-center gap-2">
           {modulo}
@@ -127,9 +131,12 @@ export function Sidebar() {
   return (
     <aside className="flex flex-col gap-4 border-b border-borde bg-superficie p-4 md:sticky md:top-0 md:h-screen md:gap-8 md:border-r md:border-b-0 md:p-6">
       <div className="flex items-center justify-between gap-4 md:flex-col md:items-start md:gap-3">
-        <Link to={RUTAS.SITIO} aria-label="Vida Salud, ir a la página principal">
-          <Logo />
-        </Link>
+        <div className="flex items-center gap-3 md:w-full md:justify-between">
+          <Link to={RUTAS.SITIO} aria-label="Vida Salud, ir a la página principal">
+            <Logo />
+          </Link>
+          <BotonTema />
+        </div>
         <Link to={RUTAS.SITIO} className="text-xs font-semibold text-suave underline-offset-2 hover:text-texto hover:underline">
           ← Página principal
         </Link>
@@ -156,12 +163,12 @@ export function Sidebar() {
           to={RUTAS.PERFIL}
           title="Mi perfil"
           className={({ isActive }) =>
-            `-m-2 flex min-w-0 items-center gap-3 rounded-sm p-2 transition-colors hover:bg-gris ${isActive ? 'bg-gris' : ''}`
+            `-m-2 flex min-w-0 items-center gap-3 rounded-lg p-2 transition-colors hover:bg-superficie-subtil ${isActive ? 'bg-primario-suave' : ''}`
           }
         >
           <span
             aria-hidden="true"
-            className="grid size-9 shrink-0 place-items-center rounded-full bg-primario text-xs font-semibold text-white"
+            className="grid size-9 shrink-0 place-items-center rounded-full bg-primario text-xs font-semibold text-sobre-primario"
           >
             {iniciales(usuario)}
           </span>

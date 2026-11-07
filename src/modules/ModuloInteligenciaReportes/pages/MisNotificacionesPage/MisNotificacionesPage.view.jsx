@@ -47,7 +47,7 @@ export function MisNotificacionesPage() {
       {pagina.cargando && pagina.notificaciones.length === 0 && <Spinner mensaje="Cargando notificaciones…" />}
 
       {!pagina.cargando && pagina.notificaciones.length === 0 && (
-        <p className="rounded-md border border-borde bg-white px-4 py-12 text-center text-suave">
+        <p className="rounded-xl border border-borde bg-superficie px-4 py-12 text-center text-suave">
           {pagina.soloNoLeidas ? 'No tiene notificaciones sin leer.' : 'Aún no tiene notificaciones.'}
         </p>
       )}
@@ -56,7 +56,7 @@ export function MisNotificacionesPage() {
         {pagina.notificaciones.map((notificacion) => (
           <li
             key={notificacion.id}
-            className={`flex flex-col gap-3 rounded-md border bg-white p-4 sm:flex-row sm:items-start sm:justify-between ${notificacion.leida ? 'border-borde' : 'border-primario'}`}
+            className={`flex flex-col gap-3 rounded-xl border bg-superficie p-4 sm:flex-row sm:items-start sm:justify-between ${notificacion.leida ? 'border-borde' : 'border-primario'}`}
           >
             <div className="flex flex-col gap-1">
               <p className="flex items-center gap-2">

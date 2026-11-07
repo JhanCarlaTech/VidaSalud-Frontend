@@ -18,7 +18,7 @@ export function ReporteImprimiblePage() {
   const { datos: reporte, error, cargando } = useConsulta(() => generarReporte(tipo, filtros), parametros.toString())
 
   return (
-    <main className="min-h-screen bg-superficie px-4 py-8 print:bg-white print:p-0">
+    <main className="papel min-h-screen bg-superficie-subtil px-4 py-8 print:bg-white print:p-0">
       <div className="mx-auto mb-6 flex max-w-5xl flex-wrap items-center justify-between gap-3 print:hidden">
         <Button variante="secundario" onClick={() => navigate(-1)}>
           ← Volver
@@ -26,7 +26,7 @@ export function ReporteImprimiblePage() {
         {reporte && <Button onClick={() => window.print()}>Imprimir / Guardar como PDF</Button>}
       </div>
 
-      <div className="mx-auto max-w-5xl rounded-md bg-white p-8 shadow-suave print:max-w-none print:p-0 print:shadow-none">
+      <div className="mx-auto max-w-5xl rounded-xl bg-superficie p-8 shadow-suave print:max-w-none print:p-0 print:shadow-none">
         {cargando && <Spinner mensaje="Generando reporte…" />}
         {!cargando && error && <Alert variante="error">{error}</Alert>}
         {!cargando && reporte && <ReporteDocumento reporte={reporte} clinica="Clínica Vida Salud" />}

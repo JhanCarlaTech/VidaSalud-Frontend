@@ -146,7 +146,7 @@ export function EspecialidadFormModal({ especialidad, onCerrar, onGuardado }) {
             {especialidad.medicos.length === 0 ? (
               <p className="text-sm text-suave">Ningún médico la ejerce todavía.</p>
             ) : (
-              <ul className="flex flex-col divide-y divide-borde rounded-sm border border-borde">
+              <ul className="flex flex-col divide-y divide-borde rounded-lg border border-borde">
                 {especialidad.medicos.map((medico) => (
                   <li key={medico.id} className="flex items-center justify-between gap-4 px-4 py-2 text-sm">
                     <span>

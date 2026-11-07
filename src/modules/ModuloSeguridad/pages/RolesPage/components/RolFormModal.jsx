@@ -185,7 +185,7 @@ export function RolFormModal({ rol, permisos, onCerrar, onGuardado }) {
                   return (
                     <li key={permiso.id}>
                       <label
-                        className={`flex items-start gap-3 rounded-sm border px-4 py-3 ${marcado ? 'border-primario' : 'border-borde'} ${obligatorio ? 'cursor-not-allowed bg-superficie' : 'cursor-pointer hover:border-sutil'}`}
+                        className={`flex items-start gap-3 rounded-lg border px-4 py-3 ${marcado ? 'border-primario' : 'border-borde'} ${obligatorio ? 'cursor-not-allowed bg-superficie-subtil' : 'cursor-pointer hover:border-sutil'}`}
                       >
                         <input
                           type="checkbox"

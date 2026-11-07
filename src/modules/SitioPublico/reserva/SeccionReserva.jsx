@@ -52,7 +52,7 @@ function Paso({ numero, titulo, descripcion, children }) {
   return (
     <section className="flex flex-col gap-4 border-b border-borde pb-8 last:border-b-0 last:pb-0">
       <header className="flex items-start gap-3">
-        <span aria-hidden="true" className="grid size-7 shrink-0 place-items-center rounded-full bg-primario text-xs font-semibold text-white">
+        <span aria-hidden="true" className="grid size-7 shrink-0 place-items-center rounded-full bg-primario text-xs font-semibold text-sobre-primario">
           {numero}
         </span>
         <div className="flex flex-col gap-0.5">
@@ -81,7 +81,7 @@ function Resumen({ reserva, bloqueadaPorRol }) {
   const enEleccion = reserva.etapa === ETAPAS.ELECCION
 
   return (
-    <aside className="flex flex-col gap-5 rounded-md border border-borde bg-white p-5 lg:sticky lg:top-0">
+    <aside className="flex flex-col gap-5 rounded-xl border border-borde bg-superficie p-5 lg:sticky lg:top-0">
       <h3 className="text-lg font-semibold">Resumen</h3>
 
       <dl className="flex flex-col gap-3">
@@ -179,7 +179,7 @@ function Eleccion({ reserva, especialidades }) {
                     onClick={() => reserva.elegirFecha(fecha)}
                     aria-pressed={reserva.fecha === fecha}
                     className={`cursor-pointer rounded-full border px-3 py-1.5 text-sm capitalize transition-colors ${
-                      reserva.fecha === fecha ? 'border-primario bg-primario text-white' : 'border-borde bg-white hover:border-primario'
+                      reserva.fecha === fecha ? 'border-primario bg-primario text-sobre-primario' : 'border-borde bg-superficie hover:border-primario'
                     }`}
                   >
                     {fechaCorta(fecha)}
@@ -266,7 +266,7 @@ export function SeccionReserva({ reserva, especialidades }) {
         <button
           type="button"
           onClick={() => reserva.abrir()}
-          className="inline-flex min-h-14 cursor-pointer items-center justify-center gap-3 rounded-sm bg-primario px-10 text-base font-semibold text-white shadow-suave transition-all hover:-translate-y-0.5 hover:bg-primario-hover"
+          className="inline-flex min-h-14 cursor-pointer items-center justify-center gap-3 rounded-lg bg-primario px-10 text-base font-semibold text-sobre-primario shadow-suave transition-all hover:-translate-y-0.5 hover:bg-primario-hover"
         >
           {enCurso ? 'Continuar mi reserva' : 'Agendar cita'}
           <svg aria-hidden="true" viewBox="0 0 20 20" fill="currentColor" className="size-5">
@@ -323,7 +323,7 @@ function AsistenteReserva({ reserva, especialidades }) {
             <PasoCuenta agendando={reserva.agendando} onSesion={reserva.agendar} onVolver={reserva.volverAEleccion} />
           )}
           {etapa === ETAPAS.PAGO && (
-            <PasoPago cita={reserva.cita} monto={reserva.especialidad.precio_consulta} onPagado={reserva.finalizarPago} />
+            <PasoPago cita={reserva.cita} especialidad={reserva.especialidad} onPagado={reserva.finalizarPago} />
           )}
           <Resumen reserva={reserva} bloqueadaPorRol={bloqueadaPorRol} />
         </div>

@@ -81,7 +81,7 @@ export function RecetasPage() {
 
       {pagina.aviso && <Alert>{pagina.aviso}</Alert>}
       {pagina.ultimaReceta && (
-        <div className="flex flex-col gap-3 rounded-md border border-primario bg-white p-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-3 rounded-xl border border-primario bg-superficie p-4 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm">
             Receta <strong className="font-mono font-semibold">{pagina.ultimaReceta.numero}</strong> emitida para{' '}
             {pagina.ultimaReceta.paciente.nombre_completo}.
@@ -89,7 +89,7 @@ export function RecetasPage() {
           <div className="flex gap-2">
             <Link
               to={rutaImprimir(pagina.ultimaReceta.id)}
-              className="inline-flex min-h-9 items-center rounded-sm border border-primario bg-primario px-3 py-1.5 text-sm font-semibold text-white hover:bg-primario-hover"
+              className="inline-flex min-h-9 items-center rounded-lg border border-primario bg-primario px-3 py-1.5 text-sm font-semibold text-sobre-primario hover:bg-primario-hover"
             >
               Imprimir receta
             </Link>

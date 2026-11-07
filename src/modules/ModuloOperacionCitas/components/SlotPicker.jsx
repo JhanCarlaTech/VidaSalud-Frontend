@@ -32,11 +32,11 @@ export function SlotPicker({ turnos, seleccionado, onSeleccionar, deshabilitado 
               title={disponible ? `${turno.hora_inicio}–${turno.hora_fin}` : NO_DISPONIBLE[turno.estado]}
               disabled={!disponible || deshabilitado}
               onClick={() => onSeleccionar(turno.hora_inicio)}
-              className={`rounded-sm border px-2 py-2 text-sm tabular-nums transition-colors ${
+              className={`rounded-lg border px-2 py-2 text-sm tabular-nums transition-colors ${
                 elegido
-                  ? 'border-primario bg-primario text-white'
+                  ? 'border-primario bg-primario text-sobre-primario'
                   : disponible
-                    ? 'cursor-pointer border-borde bg-white hover:border-primario'
+                    ? 'cursor-pointer border-borde bg-superficie hover:border-primario'
                     : 'cursor-not-allowed border-dashed border-borde bg-gris text-sutil line-through'
               }`}
             >

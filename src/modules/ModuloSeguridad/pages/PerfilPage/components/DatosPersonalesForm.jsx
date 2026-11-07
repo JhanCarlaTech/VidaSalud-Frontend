@@ -90,7 +90,7 @@ export function DatosPersonalesForm({ usuario, onGuardado }) {
       </fieldset>
 
       {cambiaCorreo && (
-        <fieldset className="flex flex-col gap-3 rounded-sm border border-borde bg-superficie p-4" disabled={enviando}>
+        <fieldset className="flex flex-col gap-3 rounded-lg border border-borde bg-superficie-subtil p-4" disabled={enviando}>
           <legend className="sr-only">Confirmación</legend>
           <p className="text-sm">El correo es su dato de inicio de sesión. Confirme su contraseña para cambiarlo.</p>
           <Input

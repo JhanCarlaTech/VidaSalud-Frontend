@@ -8,7 +8,7 @@ const SIN_DATO = '—'
 /** Dato de los signos vitales. */
 function Signo({ etiqueta, valor, unidad }) {
   return (
-    <div className="flex flex-col rounded-sm border border-borde px-3 py-2">
+    <div className="flex flex-col rounded-lg border border-borde px-3 py-2">
       <span className="text-xs text-suave">{etiqueta}</span>
       <span className="font-semibold tabular-nums">{valor === null || valor === undefined ? SIN_DATO : `${valor}${unidad ? ` ${unidad}` : ''}`}</span>
     </div>
@@ -33,7 +33,7 @@ export function ConsultaHistorial({ consulta }) {
   const { signos_vitales: signos } = consulta
 
   return (
-    <article className="flex flex-col gap-4 rounded-md border border-borde bg-white p-5">
+    <article className="flex flex-col gap-4 rounded-xl border border-borde bg-superficie p-5">
       <header className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
         <div className="flex flex-col gap-0.5">
           <p className="font-semibold">{formatearFechaHora(consulta.fecha_atencion)}</p>
@@ -66,7 +66,7 @@ export function ConsultaHistorial({ consulta }) {
           <h4 className="text-xs font-medium tracking-wider text-suave uppercase">Recetas</h4>
           <ul className="flex flex-col gap-2">
             {consulta.recetas.map((receta) => (
-              <li key={receta.id} className="flex flex-col gap-2 rounded-sm bg-superficie px-3 py-2 sm:flex-row sm:items-center sm:justify-between">
+              <li key={receta.id} className="flex flex-col gap-2 rounded-lg bg-superficie-subtil px-3 py-2 sm:flex-row sm:items-center sm:justify-between">
                 <div className="flex flex-col">
                   <span className="font-mono text-sm font-semibold">{receta.numero}</span>
                   <span className="text-sm">

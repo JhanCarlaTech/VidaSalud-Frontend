@@ -83,7 +83,7 @@ export function ReprogramarCitaModal({ cita, onCerrar, onReprogramada }) {
                 onClick={() => elegirFecha(sugerida)}
                 aria-pressed={fecha === sugerida}
                 className={`cursor-pointer rounded-full border px-3 py-1.5 text-sm capitalize transition-colors ${
-                  fecha === sugerida ? 'border-primario bg-primario text-white' : 'border-borde bg-white hover:border-primario'
+                  fecha === sugerida ? 'border-primario bg-primario text-sobre-primario' : 'border-borde bg-superficie hover:border-primario'
                 }`}
               >
                 {fechaCorta(sugerida)}

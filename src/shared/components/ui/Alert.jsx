@@ -12,7 +12,7 @@ export function Alert({ variante = 'info', children }) {
   return (
     <div
       role={variante === 'error' ? 'alert' : 'status'}
-      className={`rounded-sm border-0 border-l-[3px] px-4 py-3 text-sm ${VARIANTES[variante]}`}
+      className={`rounded-lg border-0 border-l-[3px] px-4 py-3 text-sm ${VARIANTES[variante]}`}
     >
       {children}
     </div>

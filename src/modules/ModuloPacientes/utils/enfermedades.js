@@ -2,12 +2,12 @@
 export const NIVELES_RIESGO = Object.freeze(['Bajo', 'Moderado', 'Alto', 'Crítico'])
 
 /**
- * Estilo monocromático del nivel: los riesgos altos se destacan con fondo negro.
- * @type {Record<string, 'solido' | 'neutro' | 'contorno'>}
+ * Color del nivel de riesgo: verde, ámbar y rojo (el texto siempre dice el nivel).
+ * @type {Record<string, 'exito' | 'advertencia' | 'peligro'>}
  */
 export const VARIANTE_RIESGO = Object.freeze({
-  Bajo: 'contorno',
-  Moderado: 'neutro',
-  Alto: 'solido',
-  Crítico: 'solido',
+  Bajo: 'exito',
+  Moderado: 'advertencia',
+  Alto: 'peligro',
+  Crítico: 'peligro',
 })

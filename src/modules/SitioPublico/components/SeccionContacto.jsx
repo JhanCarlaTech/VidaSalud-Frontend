@@ -38,7 +38,7 @@ export function SeccionContacto() {
   const telefonoWhatsapp = CONTACTO_CLINICA.whatsapp.replace(/\D/g, '')
 
   return (
-    <section id="contacto" className="scroll-mt-16 bg-superficie">
+    <section id="contacto" className="scroll-mt-16 bg-superficie-subtil">
       <div className="mx-auto flex max-w-6xl flex-col gap-12 px-4 py-20 sm:px-6">
         <Revelar>
           <EncabezadoSeccion
@@ -50,7 +50,7 @@ export function SeccionContacto() {
 
         <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr]">
           <Revelar className="flex flex-col gap-6">
-            <dl className="grid gap-6 rounded-md border border-borde bg-white p-6 sm:grid-cols-2">
+            <dl className="grid gap-6 rounded-xl border border-borde bg-superficie p-6 sm:grid-cols-2">
               <DatoContacto titulo="Dirección">{CONTACTO_CLINICA.direccion}</DatoContacto>
               <DatoContacto titulo="Teléfono">
                 <a href={`tel:${CONTACTO_CLINICA.telefono.replace(/\s/g, '')}`} className="hover:underline">
@@ -78,12 +78,12 @@ export function SeccionContacto() {
               </div>
             </dl>
             <div className="aspect-[12/7] w-full">
-              <EspacioImagen src={IMAGENES_SITIO.mapa} descripcion="Mapa de ubicación" tamano="1200 × 700" />
+              <EspacioImagen src={IMAGENES_SITIO.mapa} descripcion="Mapa de ubicación de la Clínica Vida Salud" tamano="1200 × 700" />
             </div>
           </Revelar>
 
           <Revelar retraso={120}>
-            <form onSubmit={enviar} className="flex h-full flex-col gap-5 rounded-md border border-borde bg-white p-6">
+            <form onSubmit={enviar} className="flex h-full flex-col gap-5 rounded-xl border border-borde bg-superficie p-6">
               <h3 className="text-lg font-semibold">Envíenos un mensaje</h3>
               <div className="grid gap-4 sm:grid-cols-2">
                 <Input etiqueta="Nombre" name="nombre" value={valores.nombre} onChange={manejarCambio} required />

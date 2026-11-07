@@ -1,0 +1,16 @@
+# Se generan dentro de la imagen
+node_modules
+dist
+
+# Local, control de versiones y documentación
+.git
+.gitignore
+.vscode
+.idea
+.claude
+*.local
+.env
+.env.*
+Arquitectura
+Diseño
+*.md

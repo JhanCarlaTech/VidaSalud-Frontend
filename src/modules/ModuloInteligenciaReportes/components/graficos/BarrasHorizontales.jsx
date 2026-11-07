@@ -33,7 +33,7 @@ export function BarrasHorizontales({ filas, formato = 'numero', maximo, sinValor
             onFocus={() => setActiva(indice)}
             onBlur={() => setActiva(null)}
             // En pantallas angostas el nombre va arriba y la barra usa todo el ancho.
-            className="relative grid grid-cols-1 gap-1 rounded-sm py-1 outline-none focus-visible:ring-2 focus-visible:ring-primario sm:grid-cols-[minmax(0,14rem)_1fr] sm:items-center sm:gap-3"
+            className="relative grid grid-cols-1 gap-1 rounded-lg py-1 outline-none focus-visible:ring-2 focus-visible:ring-primario sm:grid-cols-[minmax(0,14rem)_1fr] sm:items-center sm:gap-3"
           >
             <span className="truncate text-sm" title={fila.grupo}>
               {fila.grupo}
@@ -52,7 +52,7 @@ export function BarrasHorizontales({ filas, formato = 'numero', maximo, sinValor
             </span>
 
             {activa === indice && fila.detalle && (
-              <span role="status" className="pointer-events-none absolute right-0 -top-7 z-10 rounded-sm border border-borde bg-white px-2 py-1 text-xs shadow-suave">
+              <span role="status" className="pointer-events-none absolute right-0 -top-7 z-10 rounded-lg border border-borde bg-superficie px-2 py-1 text-xs shadow-suave">
                 {fila.detalle}
               </span>
             )}

@@ -9,7 +9,7 @@ export function RecetaDocumento({ receta }) {
   const { clinica, paciente, medico, consulta } = receta
 
   return (
-    <article className="mx-auto flex w-full max-w-3xl flex-col gap-6 bg-white p-8 text-texto print:max-w-none print:p-0">
+    <article className="mx-auto flex w-full max-w-3xl flex-col gap-6 bg-superficie p-8 text-texto print:max-w-none print:p-0">
       <header className="flex flex-col gap-4 border-b-2 border-primario pb-4 sm:flex-row sm:items-start sm:justify-between">
         <div className="flex flex-col gap-1">
           <p className="text-2xl font-semibold">{clinica.nombre}</p>

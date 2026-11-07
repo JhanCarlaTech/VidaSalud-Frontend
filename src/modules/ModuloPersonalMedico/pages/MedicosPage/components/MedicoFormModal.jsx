@@ -139,7 +139,7 @@ export function MedicoFormModal({ medico, especialidades, onCerrar, onGuardado }
               return (
                 <li key={especialidad.id}>
                   <label
-                    className={`flex h-full cursor-pointer items-start gap-3 rounded-sm border px-4 py-3 hover:border-sutil ${marcada ? 'border-primario' : 'border-borde'}`}
+                    className={`flex h-full cursor-pointer items-start gap-3 rounded-lg border px-4 py-3 hover:border-sutil ${marcada ? 'border-primario' : 'border-borde'}`}
                   >
                     <input
                       type="checkbox"

@@ -29,8 +29,8 @@ export function PerfilPage() {
       </header>
 
       {/* Resumen de la cuenta */}
-      <div className="flex flex-col gap-4 rounded-md border border-borde bg-white p-6 sm:flex-row sm:items-center">
-        <span aria-hidden="true" className="grid size-14 shrink-0 place-items-center rounded-full bg-primario text-lg font-semibold text-white">
+      <div className="flex flex-col gap-4 rounded-xl border border-borde bg-superficie p-6 sm:flex-row sm:items-center">
+        <span aria-hidden="true" className="grid size-14 shrink-0 place-items-center rounded-full bg-primario text-lg font-semibold text-sobre-primario">
           {iniciales(usuario)}
         </span>
         <div className="flex min-w-0 flex-col gap-1">

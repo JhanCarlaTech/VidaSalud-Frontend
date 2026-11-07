@@ -24,7 +24,7 @@ export function LandingPage() {
     <div className="min-h-full bg-fondo">
       <a
         href="#agendar"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-sm focus:bg-primario focus:px-4 focus:py-2 focus:text-white"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-lg focus:bg-primario focus:px-4 focus:py-2 focus:text-sobre-primario"
       >
         Ir a agendar cita
       </a>

@@ -10,9 +10,9 @@ export function Select({ etiqueta, error, opciones, id, className = '', ...props
   const idError = `${idCampo}-error`
 
   const clases = [
-    'min-h-11 w-full cursor-pointer rounded-sm border bg-white px-4 py-3 text-base text-texto transition',
+    'min-h-11 w-full cursor-pointer rounded-lg border bg-superficie px-4 py-3 text-base text-texto transition',
     'hover:border-sutil disabled:cursor-not-allowed disabled:bg-gris',
-    'focus:border-primario focus:ring-1 focus:ring-primario focus:outline-none',
+    'focus:border-primario focus:ring-2 focus:ring-primario/20 focus:outline-none',
     error ? 'border-peligro' : 'border-borde',
     className,
   ]

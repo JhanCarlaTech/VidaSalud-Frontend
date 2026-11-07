@@ -19,7 +19,7 @@ function Columnas({ titulo, columnas }) {
       <span className="text-xs font-medium tracking-wider text-suave uppercase">{titulo}</span>
       <div className="flex flex-wrap gap-1.5">
         {columnas.map((columna) => (
-          <code key={columna} className="rounded-sm border border-borde bg-superficie px-2 py-0.5 font-mono text-xs">
+          <code key={columna} className="rounded-lg border border-borde bg-superficie-subtil px-2 py-0.5 font-mono text-xs">
             {columna}
           </code>
         ))}
@@ -31,9 +31,9 @@ function Columnas({ titulo, columnas }) {
 /** Paso numerado del flujo. */
 function Paso({ numero, titulo, children }) {
   return (
-    <section className="flex flex-col gap-4 rounded-md border border-borde bg-white p-6">
+    <section className="flex flex-col gap-4 rounded-xl border border-borde bg-superficie p-6">
       <h2 className="flex items-center gap-3 text-lg font-semibold">
-        <span className="grid size-7 place-items-center rounded-full bg-primario text-sm text-white">{numero}</span>
+        <span className="grid size-7 place-items-center rounded-full bg-primario text-sm text-sobre-primario">{numero}</span>
         {titulo}
       </h2>
       {children}
@@ -93,7 +93,7 @@ export function CargaLotesPage() {
                 Archivo CSV
               </label>
               <div
-                className={`flex flex-col gap-3 rounded-sm border border-dashed px-4 py-4 sm:flex-row sm:items-center sm:justify-between ${
+                className={`flex flex-col gap-3 rounded-lg border border-dashed px-4 py-4 sm:flex-row sm:items-center sm:justify-between ${
                   pagina.errorArchivo ? 'border-peligro' : 'border-borde'
                 }`}
               >
@@ -106,7 +106,7 @@ export function CargaLotesPage() {
                   disabled={pagina.validando}
                   aria-invalid={Boolean(pagina.errorArchivo)}
                   aria-describedby={pagina.errorArchivo ? `${idArchivo}-error` : undefined}
-                  className="text-sm file:mr-4 file:cursor-pointer file:rounded-sm file:border file:border-primario file:bg-white file:px-4 file:py-2 file:text-sm file:font-semibold hover:file:bg-gris"
+                  className="text-sm file:mr-4 file:cursor-pointer file:rounded-lg file:border file:border-primario file:bg-superficie file:px-4 file:py-2 file:text-sm file:font-semibold hover:file:bg-gris"
                 />
                 {archivo && <span className="text-sm text-suave">{formatearTamano(archivo.size)}</span>}
               </div>

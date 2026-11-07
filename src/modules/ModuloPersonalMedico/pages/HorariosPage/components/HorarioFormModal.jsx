@@ -131,7 +131,7 @@ export function HorarioFormModal({ idMedico, horario, diaInicial, onCerrar, onGu
         </fieldset>
 
         {turnos > 0 && (
-          <p className="rounded-sm border border-borde bg-superficie px-4 py-3 text-sm">
+          <p className="rounded-lg border border-borde bg-superficie-subtil px-4 py-3 text-sm">
             Se ofrecerán <strong className="font-semibold">{turnos} {turnos === 1 ? 'turno' : 'turnos'}</strong> de{' '}
             {valores.duracion_minutos} minutos.
             {sobrante > 0 && <span className="text-suave"> Los últimos {sobrante} minutos no completan un turno y no se ofrecerán.</span>}

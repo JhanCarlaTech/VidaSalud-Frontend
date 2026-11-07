@@ -43,8 +43,8 @@ export function DashboardPage() {
                 type="button"
                 aria-pressed={activo}
                 onClick={() => pagina.elegirAtajo(atajo)}
-                className={`min-h-9 cursor-pointer rounded-sm border px-3 py-1.5 text-sm font-semibold transition-colors ${
-                  activo ? 'border-primario bg-primario text-white' : 'border-borde bg-white hover:border-primario'
+                className={`min-h-9 cursor-pointer rounded-lg border px-3 py-1.5 text-sm font-semibold transition-colors ${
+                  activo ? 'border-primario bg-primario text-sobre-primario' : 'border-borde bg-superficie hover:border-primario'
                 }`}
               >
                 {atajo.etiqueta}

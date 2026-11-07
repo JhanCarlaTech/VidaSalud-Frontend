@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { Alert } from '../../../../shared/components/ui/Alert'
 import { Button } from '../../../../shared/components/ui/Button'
 import { Input } from '../../../../shared/components/ui/Input'
+import { BotonTema } from '../../../../shared/components/ui/BotonTema'
 import { Logo } from '../../../../shared/components/ui/Logo'
 import { RUTAS } from '../../../../shared/utils/constants'
 import { fechaISO } from '../../../../shared/utils/formatters'
@@ -16,18 +17,19 @@ export function RegistroPage() {
 
   return (
     <div className="grid min-h-full lg:grid-cols-[2fr_3fr]">
-      <aside className="hidden flex-col justify-between bg-primario p-12 text-white lg:flex">
+      <aside className="hidden flex-col justify-between bg-marca p-12 text-sobre-marca lg:flex">
         <Link to={RUTAS.SITIO} className="w-fit" aria-label="Vida Salud, ir a la página principal">
           <Logo invertido />
         </Link>
         <div className="flex max-w-md flex-col gap-4">
           <h2 className="text-4xl leading-tight font-semibold">Su salud, a un clic.</h2>
-          <p className="text-sutil">Cree su cuenta para reservar citas, seguir sus atenciones y consultar su historial.</p>
+          <p className="text-sobre-marca/70">Cree su cuenta para reservar citas, seguir sus atenciones y consultar su historial.</p>
         </div>
-        <p className="text-xs text-sutil">© {new Date().getFullYear()} Clínica Vida Salud</p>
+        <p className="text-xs text-sobre-marca/70">© {new Date().getFullYear()} Clínica Vida Salud</p>
       </aside>
 
-      <main className="flex justify-center px-4 py-10">
+      <main className="relative flex justify-center px-4 py-10">
+        <BotonTema className="absolute top-4 right-4" />
         <form className="flex w-full max-w-xl flex-col gap-6" onSubmit={manejarEnvio} noValidate>
           <div className="lg:hidden">
             <Logo />

@@ -10,9 +10,9 @@ import { Spinner } from './Spinner'
  */
 export function DataTable({ columnas, filas, obtenerClave, cargando = false, mensajeVacio = 'No hay registros.' }) {
   return (
-    <div className="relative overflow-x-auto rounded-md border border-borde bg-white">
+    <div className="relative overflow-x-auto rounded-xl border border-borde bg-superficie">
       <table className="w-full min-w-[720px] border-collapse text-left text-sm">
-        <thead className="border-b border-borde bg-superficie">
+        <thead className="border-b border-borde bg-superficie-subtil">
           <tr>
             {columnas.map((columna) => (
               <th key={columna.clave} scope="col" className={`px-4 py-3 text-xs font-medium tracking-wider text-suave uppercase ${columna.className ?? ''}`}>
@@ -23,7 +23,7 @@ export function DataTable({ columnas, filas, obtenerClave, cargando = false, men
         </thead>
         <tbody>
           {filas.map((fila) => (
-            <tr key={obtenerClave(fila)} className="border-b border-borde last:border-b-0 hover:bg-superficie">
+            <tr key={obtenerClave(fila)} className="border-b border-borde last:border-b-0 hover:bg-superficie-subtil">
               {columnas.map((columna) => (
                 <td key={columna.clave} className={`px-4 py-3 align-middle ${columna.className ?? ''}`}>
                   {columna.render ? columna.render(fila) : fila[columna.clave]}
@@ -43,7 +43,7 @@ export function DataTable({ columnas, filas, obtenerClave, cargando = false, men
       </table>
 
       {cargando && (
-        <div className={`grid place-items-center bg-white/70 ${filas.length > 0 ? 'absolute inset-0' : 'py-12'}`}>
+        <div className={`grid place-items-center bg-superficie/70 ${filas.length > 0 ? 'absolute inset-0' : 'py-12'}`}>
           <Spinner mensaje="Cargando…" />
         </div>
       )}

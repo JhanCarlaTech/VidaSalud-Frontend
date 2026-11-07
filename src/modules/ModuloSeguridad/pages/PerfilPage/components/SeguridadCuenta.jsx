@@ -48,7 +48,7 @@ export function SeguridadCuenta({ onAviso }) {
         {sesiones.cargando && !sesiones.datos ? (
           <Spinner mensaje="Cargando sesiones…" />
         ) : (
-          <ul className="flex flex-col divide-y divide-borde rounded-md border border-borde bg-white">
+          <ul className="flex flex-col divide-y divide-borde rounded-xl border border-borde bg-superficie">
             {(sesiones.datos ?? []).map((sesion) => (
               <li key={`${sesion.ip}-${sesion.ultima_actividad}`} className="flex flex-col gap-1 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
                 <div className="flex flex-col">
@@ -77,7 +77,7 @@ export function SeguridadCuenta({ onAviso }) {
         ) : (accesos.datos ?? []).length === 0 ? (
           <p className="text-sm text-suave">No hay accesos registrados.</p>
         ) : (
-          <ul className="flex flex-col divide-y divide-borde rounded-md border border-borde bg-white">
+          <ul className="flex flex-col divide-y divide-borde rounded-xl border border-borde bg-superficie">
             {accesos.datos.map((acceso, indice) => (
               <li key={`${acceso.fecha}-${indice}`} className="flex items-center justify-between gap-4 px-4 py-3 text-sm">
                 <span className="flex items-center gap-2">

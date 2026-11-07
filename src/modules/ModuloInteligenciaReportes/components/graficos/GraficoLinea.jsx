@@ -1,14 +1,14 @@
-import { useState } from 'react'
+import { useId, useState } from 'react'
 import { formatearDia } from '../../../../shared/utils/formatters'
 import { formatearValor } from '../../utils/reportes'
 import { escalaLimpia, useAncho } from './useAncho'
 
 const ALTO = 220
-const MARGEN = { arriba: 16, derecha: 16, abajo: 28, izquierda: 40 }
+const MARGEN = { arriba: 26, derecha: 16, abajo: 28, izquierda: 40 } // arriba: espacio para la etiqueta del máximo
 
 /**
- * Línea de una sola serie a lo largo del tiempo (CU23), en el negro del sistema:
- * trazo de 2 px, lavado de área al 10 %, cuadrícula de líneas finas y cursor que
+ * Línea de una sola serie a lo largo del tiempo (CU23), en el azul primario:
+ * trazo de 2 px, área con degradado azul que se desvanece hacia el eje, cuadrícula de líneas finas y cursor que
  * se ajusta al día más cercano con su lectura. Se navega también con el teclado.
  *
  * @param {{ fecha: string, valor: number }[]} serie
@@ -17,6 +17,7 @@ const MARGEN = { arriba: 16, derecha: 16, abajo: 28, izquierda: 40 }
 export function GraficoLinea({ serie, etiqueta, formato = 'numero' }) {
   const [contenedor, ancho] = useAncho()
   const [activo, setActivo] = useState(null)
+  const idDegradado = useId()
 
   const internoAncho = ancho - MARGEN.izquierda - MARGEN.derecha
   const internoAlto = ALTO - MARGEN.arriba - MARGEN.abajo
@@ -69,7 +70,7 @@ export function GraficoLinea({ serie, etiqueta, formato = 'numero' }) {
         onPointerLeave={() => setActivo(null)}
         onKeyDown={alTeclado}
         onBlur={() => setActivo(null)}
-        className="block rounded-sm focus:outline-2 focus:outline-offset-2 focus:outline-primario"
+        className="block rounded-lg focus:outline-2 focus:outline-offset-2 focus:outline-primario"
       >
         {/* Cuadrícula y eje Y */}
         {marcas.map((marca) => (
@@ -94,13 +95,19 @@ export function GraficoLinea({ serie, etiqueta, formato = 'numero' }) {
           </text>
         ))}
 
-        <path d={area} className="fill-primario" fillOpacity="0.1" />
+        <defs>
+          <linearGradient id={idDegradado} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" style={{ stopColor: 'var(--vs-primario)', stopOpacity: 0.28 }} />
+            <stop offset="100%" style={{ stopColor: 'var(--vs-primario)', stopOpacity: 0 }} />
+          </linearGradient>
+        </defs>
+        <path d={area} fill={`url(#${CSS.escape(idDegradado)})`} />
         <path d={linea} fill="none" className="stroke-primario" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
 
         {/* Máximo del periodo, con su valor */}
         {indiceMaximo >= 0 && valores[indiceMaximo] > 0 && activo === null && (
           <g>
-            <circle cx={x(indiceMaximo)} cy={y(valores[indiceMaximo])} r="4" className="fill-primario stroke-fondo" strokeWidth="2" />
+            <circle cx={x(indiceMaximo)} cy={y(valores[indiceMaximo])} r="4" className="fill-primario stroke-superficie" strokeWidth="2" />
             <text x={x(indiceMaximo)} y={y(valores[indiceMaximo]) - 10} textAnchor="middle" className="fill-texto text-xs font-semibold">
               {formatearValor(valores[indiceMaximo], formato)}
             </text>
@@ -111,7 +118,7 @@ export function GraficoLinea({ serie, etiqueta, formato = 'numero' }) {
         {puntoActivo && (
           <g pointerEvents="none">
             <line x1={x(activo)} x2={x(activo)} y1={MARGEN.arriba} y2={y(0)} className="stroke-suave" strokeWidth="1" />
-            <circle cx={x(activo)} cy={y(puntoActivo.valor)} r="4" className="fill-primario stroke-fondo" strokeWidth="2" />
+            <circle cx={x(activo)} cy={y(puntoActivo.valor)} r="4" className="fill-primario stroke-superficie" strokeWidth="2" />
           </g>
         )}
       </svg>
@@ -120,7 +127,7 @@ export function GraficoLinea({ serie, etiqueta, formato = 'numero' }) {
       {puntoActivo && ancho > 0 && (
         <div
           role="status"
-          className="pointer-events-none absolute top-2 flex -translate-x-1/2 flex-col rounded-sm border border-borde bg-white px-3 py-2 text-sm shadow-suave"
+          className="pointer-events-none absolute top-2 flex -translate-x-1/2 flex-col rounded-lg border border-borde bg-superficie px-3 py-2 text-sm shadow-suave"
           style={{ left: Math.min(Math.max(x(activo), 70), ancho - 70) }}
         >
           <span className="font-semibold">{formatearValor(puntoActivo.valor, formato)}</span>

@@ -1,0 +1,52 @@
+# Servidor del frontend en Railway (HTTP plano: Railway termina el HTTPS delante).
+#
+# Variables de entorno:
+#   PORT         puerto de escucha (Railway lo define).
+#   BACKEND_URL  dirección de la API, p. ej. http://backend.railway.internal:8080
+#                (red privada de Railway) o https://<api>.up.railway.app
+{
+	admin off
+	auto_https off
+}
+
+:{$PORT:8080} {
+	encode zstd gzip
+
+	# API, cookie CSRF de Sanctum y healthcheck de Laravel → contenedor de la API.
+	@api path /api/* /sanctum/*
+	handle @api {
+		reverse_proxy {$BACKEND_URL} {
+			# El Host que espera la API (necesario si BACKEND_URL es un dominio público con HTTPS).
+			header_up Host {upstream_hostport}
+			# Laravel debe saber el dominio y el esquema originales (cookies 'secure', URLs).
+			header_up X-Forwarded-Host {host}
+			header_up X-Forwarded-Proto https
+		}
+	}
+
+	# SPA: archivos de dist/ y, para cualquier otra ruta, index.html (React Router).
+	handle {
+		root * /srv
+
+		# Archivos con hash en el nombre: se pueden guardar en caché para siempre.
+		@estaticos path /assets/*
+		header @estaticos Cache-Control "public, max-age=31536000, immutable"
+		# index.html nunca en caché: así cada despliegue se ve de inmediato.
+		@html path / /index.html
+		header @html Cache-Control "no-cache"
+
+		header {
+			X-Content-Type-Options nosniff
+			Referrer-Policy strict-origin-when-cross-origin
+			X-Frame-Options SAMEORIGIN
+		}
+
+		try_files {path} /index.html
+		file_server
+	}
+
+	log {
+		output stderr
+		format console
+	}
+}

@@ -16,7 +16,7 @@ export function HorarioGrid({ horarios, editable = false, onAgregar, onEditar, o
         const turnos = bloques.reduce((total, bloque) => total + bloque.turnos, 0)
 
         return (
-          <section key={valor} aria-label={etiqueta} className="flex flex-col gap-3 rounded-md border border-borde bg-white p-3">
+          <section key={valor} aria-label={etiqueta} className="flex flex-col gap-3 rounded-xl border border-borde bg-superficie p-3">
             <header className="flex items-baseline justify-between gap-2">
               <h3 className="text-sm font-semibold">{etiqueta}</h3>
               <span className="text-xs text-suave">{turnos > 0 ? `${turnos} turnos` : 'Sin atención'}</span>
@@ -24,7 +24,7 @@ export function HorarioGrid({ horarios, editable = false, onAgregar, onEditar, o
 
             <ul className="flex flex-1 flex-col gap-2">
               {bloques.map((bloque) => (
-                <li key={bloque.id} className="flex flex-col gap-1 rounded-sm border border-borde bg-superficie p-2">
+                <li key={bloque.id} className="flex flex-col gap-1 rounded-lg border border-borde bg-superficie-subtil p-2">
                   <span className="text-sm font-semibold tabular-nums">
                     {bloque.hora_inicio} – {bloque.hora_fin}
                   </span>

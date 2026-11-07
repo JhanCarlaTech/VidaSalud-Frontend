@@ -2,7 +2,7 @@ import { useInicioPage } from './InicioPage'
 
 function Tarjeta({ titulo, children }) {
   return (
-    <article className="flex flex-col gap-3 rounded-md border border-borde bg-white p-6">
+    <article className="flex flex-col gap-3 rounded-xl border border-borde bg-superficie p-6">
       <h2 className="text-xs font-medium tracking-wider text-suave uppercase">{titulo}</h2>
       {children}
     </article>

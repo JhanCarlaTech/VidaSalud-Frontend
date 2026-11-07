@@ -13,7 +13,7 @@ export function PanelGrafico({ titulo, descripcion, columnas, filas, cargando = 
   const [comoTabla, setComoTabla] = useState(false)
 
   return (
-    <section className="flex min-w-0 flex-col gap-4 rounded-md border border-borde bg-white p-5" aria-busy={cargando || undefined}>
+    <section className="flex min-w-0 flex-col gap-4 rounded-xl border border-borde bg-superficie p-5" aria-busy={cargando || undefined}>
       <header className="flex items-start justify-between gap-3">
         <div className="flex flex-col gap-1">
           <h2 className="font-semibold">{titulo}</h2>
@@ -23,7 +23,7 @@ export function PanelGrafico({ titulo, descripcion, columnas, filas, cargando = 
           type="button"
           onClick={() => setComoTabla(!comoTabla)}
           aria-pressed={comoTabla}
-          className="shrink-0 cursor-pointer rounded-sm border border-borde px-2 py-1 text-xs font-medium hover:border-primario"
+          className="shrink-0 cursor-pointer rounded-lg border border-borde px-2 py-1 text-xs font-medium hover:border-primario"
         >
           {comoTabla ? 'Ver gráfico' : 'Ver tabla'}
         </button>

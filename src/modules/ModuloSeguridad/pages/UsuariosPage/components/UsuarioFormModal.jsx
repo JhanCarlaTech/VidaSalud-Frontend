@@ -110,7 +110,7 @@ export function UsuarioFormModal({ usuario, roles, esUsuarioActual, onCerrar, on
 
               return (
                 <li key={rol.id}>
-                  <label className={`flex items-start gap-3 rounded-sm border px-4 py-3 ${marcado ? 'border-primario' : 'border-borde'} ${motivo ? 'cursor-not-allowed bg-superficie' : 'cursor-pointer hover:border-sutil'}`}>
+                  <label className={`flex items-start gap-3 rounded-lg border px-4 py-3 ${marcado ? 'border-primario' : 'border-borde'} ${motivo ? 'cursor-not-allowed bg-superficie-subtil' : 'cursor-pointer hover:border-sutil'}`}>
                     <input
                       type="checkbox"
                       className="mt-0.5 size-4 accent-primario"

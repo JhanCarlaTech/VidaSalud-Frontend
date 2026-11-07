@@ -66,9 +66,9 @@ function TablaCambios({ evento }) {
       )}
       {comparar && !hayModificados && <p className="text-sm text-suave">Ningún campo cambió de valor.</p>}
 
-      <div className="overflow-x-auto rounded-md border border-borde">
+      <div className="overflow-x-auto rounded-xl border border-borde">
         <table className="w-full border-collapse text-left text-sm">
-          <thead className="border-b border-borde bg-superficie">
+          <thead className="border-b border-borde bg-superficie-subtil">
             <tr>
               <th scope="col" className="px-3 py-2 text-xs font-medium tracking-wider text-suave uppercase">
                 Campo

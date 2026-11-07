@@ -1,15 +1,17 @@
 /**
  * Contenido editable de la página principal.
  *
- * Imágenes: copie el archivo en 'Frontend/public/img/' y escriba aquí su ruta,
- * por ejemplo '/img/portada.jpg'. Mientras sea null se muestra un espacio
- * reservado con el tamaño recomendado.
+ * Imágenes: están en 'Frontend/public/img/', recortadas y escaladas al tamaño
+ * exacto de su espacio (los originales están en 'Backend/Imagenes/'). Para
+ * cambiar una, reemplace el archivo respetando el tamaño indicado. Con null se
+ * muestra un espacio reservado con el tamaño recomendado.
  */
 export const IMAGENES_SITIO = Object.freeze({
-  portada: null, // 1200 × 1400, fachada o equipo médico
-  nosotros: null, // 1200 × 900, recepción o sala de espera
-  galeria: [null, null, null], // 800 × 600 cada una: consultorios, laboratorio, equipos
-  mapa: null, // 1200 × 700, captura del mapa de ubicación
+  portada: '/img/portada.jpg', // 1200 × 1400, fachada de la clínica
+  nosotros: '/img/nosotros-recepcion.jpg', // 1200 × 900, recepción o sala de espera
+  // 800 × 600 cada una, en el orden de la galería: consultorios, laboratorio, equipamiento
+  galeria: ['/img/consultorios.jpg', '/img/laboratorio.jpg', '/img/equipamiento.jpg'],
+  mapa: '/img/mapa-ubicacion.jpg', // 1200 × 700, captura del mapa de ubicación
 })
 
 /** Datos de contacto que se muestran en la sección "Contáctanos". */

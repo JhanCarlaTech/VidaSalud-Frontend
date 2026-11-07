@@ -75,7 +75,7 @@ export function MiFichaPage() {
         </p>
       </header>
 
-      <dl className="grid gap-4 rounded-md border border-borde bg-white p-6 sm:grid-cols-3">
+      <dl className="grid gap-4 rounded-xl border border-borde bg-superficie p-6 sm:grid-cols-3">
         <Dato etiqueta="Código">{ficha.codigo}</Dato>
         <Dato etiqueta="Edad">{ficha.edad} años</Dato>
         <Dato etiqueta="Fecha de nacimiento">{formatearFecha(`${ficha.fecha_nacimiento}T00:00`)}</Dato>

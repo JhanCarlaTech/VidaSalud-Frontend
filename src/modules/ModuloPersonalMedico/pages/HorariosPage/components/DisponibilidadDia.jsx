@@ -8,10 +8,10 @@ import { useDisponibilidad } from '../../../hooks/useHorarios'
 
 /** Estados de un turno (CU09, RN06) con su estilo y su texto. */
 const ESTADOS = {
-  disponible: { etiqueta: 'Disponible', clase: 'border-borde bg-white text-texto' },
-  ocupado: { etiqueta: 'Ocupado', clase: 'border-primario bg-primario text-white' },
+  disponible: { etiqueta: 'Disponible', clase: 'border-borde bg-superficie text-texto' },
+  ocupado: { etiqueta: 'Ocupado', clase: 'border-primario bg-primario text-sobre-primario' },
   bloqueado: { etiqueta: 'Bloqueado', clase: 'border-borde bg-gris text-suave' },
-  pasado: { etiqueta: 'Pasado', clase: 'border-dashed border-borde bg-white text-sutil line-through' },
+  pasado: { etiqueta: 'Pasado', clase: 'border-dashed border-borde bg-superficie text-sutil line-through' },
 }
 
 /**
@@ -44,7 +44,7 @@ export function DisponibilidadDia({ idMedico, actualizacion }) {
 
       {error && <Alert variante="error">{error}</Alert>}
 
-      <div className="flex flex-col gap-4 rounded-md border border-borde bg-white p-4">
+      <div className="flex flex-col gap-4 rounded-xl border border-borde bg-superficie p-4">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <p className="text-sm font-semibold first-letter:uppercase">
             {new Intl.DateTimeFormat('es-BO', { weekday: 'long' }).format(new Date(`${fecha}T00:00`))}, {formatearFecha(`${fecha}T00:00`)}
@@ -52,7 +52,7 @@ export function DisponibilidadDia({ idMedico, actualizacion }) {
           <ul className="flex flex-wrap gap-3 text-xs" aria-label="Leyenda">
             {Object.entries(ESTADOS).map(([clave, { etiqueta, clase }]) => (
               <li key={clave} className="flex items-center gap-1.5">
-                <span aria-hidden="true" className={`size-3 rounded-sm border ${clase}`} />
+                <span aria-hidden="true" className={`size-3 rounded-lg border ${clase}`} />
                 {etiqueta} ({disponibilidad?.resumen?.[clave] ?? 0})
               </li>
             ))}
@@ -71,7 +71,7 @@ export function DisponibilidadDia({ idMedico, actualizacion }) {
               <li
                 key={turno.hora_inicio}
                 title={`${turno.hora_inicio}–${turno.hora_fin}: ${ESTADOS[turno.estado].etiqueta}`}
-                className={`rounded-sm border px-2 py-2 text-center text-sm tabular-nums ${ESTADOS[turno.estado].clase}`}
+                className={`rounded-lg border px-2 py-2 text-center text-sm tabular-nums ${ESTADOS[turno.estado].clase}`}
               >
                 {turno.hora_inicio}
                 <span className="sr-only"> {ESTADOS[turno.estado].etiqueta}</span>

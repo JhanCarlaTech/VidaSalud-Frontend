@@ -16,7 +16,7 @@ export function RegistrarPagoPage() {
       {pagina.aviso && <Alert>{pagina.aviso}</Alert>}
       {pagina.error && <Alert variante="error">{pagina.error}</Alert>}
 
-      <form onSubmit={pagina.handleSubmit} className="flex flex-col gap-5 bg-fondo-suave p-6 rounded-lg border">
+      <form onSubmit={pagina.handleSubmit} className="flex flex-col gap-5 rounded-xl border border-borde bg-superficie p-6 shadow-suave">
         
         <Input 
           etiqueta="ID de la Cita a Pagar" 
@@ -34,12 +34,13 @@ export function RegistrarPagoPage() {
             name="id_metodo_pago" 
             value={pagina.formData.id_metodo_pago} 
             onChange={pagina.handleChange} 
-            className="border p-2 rounded bg-white focus:outline-none focus:ring-2 focus:ring-primario"
+            className="min-h-11 rounded-lg border border-borde bg-superficie px-3.5 py-2.5 text-texto focus:border-primario focus:outline-none focus:ring-2 focus:ring-primario/20"
           >
-            <option value="1">Pago QR</option>
-            <option value="2">Tarjeta de Crédito / Débito</option>
-            <option value="3">Transferencia Bancaria</option>
-            <option value="4">Efectivo en Recepción</option>
+            {pagina.metodos.map((metodo) => (
+              <option key={metodo.id} value={metodo.id}>
+                {metodo.nombre}
+              </option>
+            ))}
           </select>
         </div>
 

@@ -151,7 +151,7 @@ export function EmitirRecetaModal({ consulta, onCerrar, onEmitida }) {
           {lineas.map((linea, indice) => {
             const propios = errores.lineas[indice] ?? {}
             return (
-              <div key={linea.clave} className="grid gap-3 rounded-sm border border-borde p-4 sm:grid-cols-[2fr_1fr_1.5fr_0.8fr_auto] sm:items-start">
+              <div key={linea.clave} className="grid gap-3 rounded-lg border border-borde p-4 sm:grid-cols-[2fr_1fr_1.5fr_0.8fr_auto] sm:items-start">
                 <Input
                   etiqueta={`Medicamento ${indice + 1}`}
                   value={linea.medicamento}

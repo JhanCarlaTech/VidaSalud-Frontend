@@ -15,7 +15,7 @@ const GALERIA = ['Consultorios', 'Laboratorio', 'Equipamiento']
 /** Presentación de la clínica, sus valores y una galería de instalaciones. */
 export function SeccionNosotros() {
   return (
-    <section id="nosotros" className="scroll-mt-16 border-b border-borde bg-superficie">
+    <section id="nosotros" className="scroll-mt-16 border-b border-borde bg-superficie-subtil">
       <div className="mx-auto flex max-w-6xl flex-col gap-16 px-4 py-20 sm:px-6">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <Revelar className="aspect-[4/3] w-full">

@@ -16,7 +16,7 @@ function Paso({ numero, titulo, descripcion, children }) {
   return (
     <section className="flex flex-col gap-4 border-b border-borde pb-8 last:border-b-0">
       <header className="flex items-start gap-3">
-        <span aria-hidden="true" className="grid size-7 shrink-0 place-items-center rounded-full bg-primario text-xs font-semibold text-white">
+        <span aria-hidden="true" className="grid size-7 shrink-0 place-items-center rounded-full bg-primario text-xs font-semibold text-sobre-primario">
           {numero}
         </span>
         <div className="flex flex-col gap-0.5">
@@ -108,7 +108,7 @@ export function AgendarCitaPage() {
                         onClick={() => asistente.elegirFecha(fecha)}
                         aria-pressed={asistente.fecha === fecha}
                         className={`cursor-pointer rounded-full border px-3 py-1.5 text-sm capitalize transition-colors ${
-                          asistente.fecha === fecha ? 'border-primario bg-primario text-white' : 'border-borde bg-white hover:border-primario'
+                          asistente.fecha === fecha ? 'border-primario bg-primario text-sobre-primario' : 'border-borde bg-superficie hover:border-primario'
                         }`}
                       >
                         {fechaCorta(fecha)}

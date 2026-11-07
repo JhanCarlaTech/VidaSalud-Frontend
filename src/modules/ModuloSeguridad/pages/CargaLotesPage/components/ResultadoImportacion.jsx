@@ -13,7 +13,7 @@ const COLUMNAS = [
   {
     clave: 'contrasena_temporal',
     titulo: 'Contraseña temporal',
-    render: ({ contrasena_temporal }) => <code className="rounded-sm bg-gris px-2 py-1 font-mono text-sm">{contrasena_temporal}</code>,
+    render: ({ contrasena_temporal }) => <code className="rounded-lg bg-gris px-2 py-1 font-mono text-sm">{contrasena_temporal}</code>,
   },
 ]
 
@@ -66,7 +66,7 @@ export function ResultadoImportacion({ resultado, onNuevaCarga }) {
         </Button>
         <Link
           to={tipo === 'pacientes' ? RUTAS.PACIENTES : RUTAS.ADMIN_USUARIOS}
-          className="inline-flex min-h-11 items-center rounded-sm border border-borde bg-white px-6 py-3 text-sm font-semibold hover:border-primario"
+          className="inline-flex min-h-11 items-center rounded-lg border border-borde bg-superficie px-6 py-3 text-sm font-semibold hover:border-primario"
         >
           {tipo === 'pacientes' ? 'Ver pacientes' : 'Ver usuarios'}
         </Link>

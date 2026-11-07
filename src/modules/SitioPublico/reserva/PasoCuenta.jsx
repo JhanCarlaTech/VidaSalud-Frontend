@@ -166,7 +166,7 @@ export function PasoCuenta({ agendando, onSesion, onVolver }) {
         </p>
       </header>
 
-      <div role="tablist" aria-label="Tipo de acceso" className="inline-flex w-full rounded-md border border-borde bg-gris p-1 sm:w-fit">
+      <div role="tablist" aria-label="Tipo de acceso" className="inline-flex w-full rounded-xl border border-borde bg-gris p-1 sm:w-fit">
         {MODOS.map((opcion) => (
           <button
             key={opcion.valor}
@@ -174,8 +174,8 @@ export function PasoCuenta({ agendando, onSesion, onVolver }) {
             role="tab"
             aria-selected={modo === opcion.valor}
             onClick={() => setModo(opcion.valor)}
-            className={`flex-1 cursor-pointer rounded-sm px-4 py-2 text-sm font-semibold transition-colors sm:flex-none ${
-              modo === opcion.valor ? 'bg-white text-texto shadow-suave' : 'text-suave hover:text-texto'
+            className={`flex-1 cursor-pointer rounded-lg px-4 py-2 text-sm font-semibold transition-colors sm:flex-none ${
+              modo === opcion.valor ? 'bg-superficie text-texto shadow-suave' : 'text-suave hover:text-texto'
             }`}
           >
             {opcion.etiqueta}

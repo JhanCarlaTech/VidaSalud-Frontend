@@ -1,6 +1,8 @@
 const VARIANTES = {
-  primario: 'border-primario bg-primario text-white hover:enabled:bg-primario-hover',
-  secundario: 'border-borde bg-white text-texto hover:enabled:border-primario',
+  primario: 'border-primario bg-primario text-sobre-primario shadow-suave hover:enabled:border-primario-hover hover:enabled:bg-primario-hover',
+  secundario: 'border-borde bg-superficie text-texto hover:enabled:bg-superficie-subtil',
+  peligro: 'border-peligro bg-peligro text-sobre-peligro hover:enabled:opacity-90',
+  fantasma: 'border-transparent bg-transparent text-suave hover:enabled:bg-superficie-subtil hover:enabled:text-primario',
 }
 
 const TAMANOS = {
@@ -10,7 +12,8 @@ const TAMANOS = {
 
 /**
  * Botón base del sistema.
- * @param {'primario' | 'secundario'} variante  Negro sólido o blanco con borde fino.
+ * @param {'primario' | 'secundario' | 'peligro' | 'fantasma'} variante
+ *   Azul sólido, superficie con borde fino, rojo para acciones destructivas o transparente.
  * @param {'md' | 'sm'} tamano  'sm' para acciones dentro de tablas.
  * @param {boolean} bloque    Ocupa todo el ancho disponible.
  * @param {boolean} cargando  Muestra un indicador y deshabilita el botón.
@@ -27,8 +30,9 @@ export function Button({
   ...props
 }) {
   const clases = [
-    'inline-flex cursor-pointer items-center justify-center gap-2 rounded-sm border',
-    'text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-60',
+    'inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg border',
+    'text-sm font-semibold transition-colors duration-150 disabled:cursor-not-allowed disabled:opacity-50',
+    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primario focus-visible:ring-offset-2 focus-visible:ring-offset-fondo',
     VARIANTES[variante],
     TAMANOS[tamano],
     bloque && 'w-full',

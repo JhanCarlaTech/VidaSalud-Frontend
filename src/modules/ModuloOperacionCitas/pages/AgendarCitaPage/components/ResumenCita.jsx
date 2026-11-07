@@ -19,7 +19,7 @@ export function ResumenCita({ asistente }) {
   const modalidad = asistente.modalidades.find((m) => m.id === asistente.idModalidad)
 
   return (
-    <aside className="flex flex-col gap-5 rounded-md border border-borde bg-white p-5 lg:sticky lg:top-6">
+    <aside className="flex flex-col gap-5 rounded-xl border border-borde bg-superficie p-5 lg:sticky lg:top-6">
       <h2 className="text-lg font-semibold">Resumen</h2>
 
       <dl className="flex flex-col gap-3">

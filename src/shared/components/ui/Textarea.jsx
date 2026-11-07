@@ -10,9 +10,9 @@ export function Textarea({ etiqueta, error, id, maxLength, value = '', className
   const idError = `${idCampo}-error`
 
   const clases = [
-    'min-h-24 w-full resize-y rounded-sm border bg-white px-4 py-3 text-base text-texto transition',
+    'min-h-24 w-full resize-y rounded-lg border bg-superficie px-4 py-3 text-base text-texto transition',
     'placeholder:text-sutil hover:border-sutil disabled:bg-gris',
-    'focus:border-primario focus:ring-1 focus:ring-primario focus:outline-none',
+    'focus:border-primario focus:ring-2 focus:ring-primario/20 focus:outline-none',
     error ? 'border-peligro' : 'border-borde',
     className,
   ]

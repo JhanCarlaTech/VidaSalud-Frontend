@@ -102,7 +102,7 @@ export function AvisoModal({ onCerrar, onEnviado }) {
         {errorGeneral && <Alert variante="error">{errorGeneral}</Alert>}
 
         {paciente ? (
-          <div className="flex items-center justify-between gap-3 rounded-sm border border-borde px-4 py-3">
+          <div className="flex items-center justify-between gap-3 rounded-lg border border-borde px-4 py-3">
             <div className="flex flex-col">
               <span className="font-semibold">{paciente.usuario.nombre_completo}</span>
               <span className="text-sm text-suave">
@@ -125,10 +125,10 @@ export function AvisoModal({ onCerrar, onEnviado }) {
             />
             {mostrarResultados && resultados.items.length === 0 && <p className="text-sm text-suave">Ningún paciente activo coincide.</p>}
             {mostrarResultados && resultados.items.length > 0 && (
-              <ul className="flex max-h-56 flex-col divide-y divide-borde overflow-y-auto rounded-sm border border-borde">
+              <ul className="flex max-h-56 flex-col divide-y divide-borde overflow-y-auto rounded-lg border border-borde">
                 {resultados.items.map((opcion) => (
                   <li key={opcion.id}>
-                    <button type="button" onClick={() => elegir(opcion)} className="flex w-full cursor-pointer flex-col px-4 py-2 text-left hover:bg-superficie">
+                    <button type="button" onClick={() => elegir(opcion)} className="flex w-full cursor-pointer flex-col px-4 py-2 text-left hover:bg-superficie-subtil">
                       <span className="font-medium">{opcion.usuario.nombre_completo}</span>
                       <span className="text-xs text-suave">
                         {opcion.codigo} · CI {opcion.usuario.ci}

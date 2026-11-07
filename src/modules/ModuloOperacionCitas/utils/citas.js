@@ -35,14 +35,17 @@ export function puedeModificar(cita, esPersonal, ahora = new Date()) {
   return { permitido: true, motivo: null }
 }
 
-/** Variante visual del estado de una cita ('estado_cita_enum'). */
+/**
+ * Variante visual del estado de una cita ('estado_cita_enum'):
+ * azul = por atender, ámbar = en curso, verde = resuelta, rojo = no se realizó.
+ */
 export const VARIANTE_ESTADO_CITA = Object.freeze({
-  Programada: 'neutro',
-  Confirmada: 'neutro',
-  'En Sala de Espera': 'solido',
-  Atendida: 'contorno',
-  Cancelada: 'contorno',
-  Inasistencia: 'contorno',
+  Programada: 'primario',
+  Confirmada: 'exito',
+  'En Sala de Espera': 'advertencia',
+  Atendida: 'exito',
+  Cancelada: 'peligro',
+  Inasistencia: 'peligro',
 })
 
 /** Día de la semana ISO (1 = lunes … 7 = domingo) de una fecha 'AAAA-MM-DD'. */

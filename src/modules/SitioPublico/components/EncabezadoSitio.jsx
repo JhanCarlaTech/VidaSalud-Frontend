@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { BotonTema } from '../../../shared/components/ui/BotonTema'
 import { Logo } from '../../../shared/components/ui/Logo'
 import { RUTAS } from '../../../shared/utils/constants'
 import { etiquetaRol } from '../../../shared/utils/formatters'
 import { useAuth } from '../../ModuloSeguridad/hooks/useAuth'
 import { irASeccion, SECCIONES_SITIO } from '../utils/sitio'
 
-const BOTON = 'inline-flex min-h-10 items-center justify-center rounded-sm border px-4 text-sm font-semibold transition-colors'
-const BOTON_PRIMARIO = `${BOTON} border-primario bg-primario text-white hover:bg-primario-hover`
-const BOTON_SECUNDARIO = `${BOTON} border-borde bg-white text-texto hover:border-primario`
+const BOTON = 'inline-flex min-h-10 items-center justify-center rounded-lg border px-4 text-sm font-semibold transition-colors'
+const BOTON_PRIMARIO = `${BOTON} border-primario bg-primario text-sobre-primario hover:bg-primario-hover`
+const BOTON_SECUNDARIO = `${BOTON} border-borde bg-superficie text-texto hover:border-primario`
 
 /** Id de la sección que ocupa la parte superior de la pantalla (resalta su enlace en el menú). */
 function useSeccionActiva() {
@@ -99,8 +100,8 @@ export function EncabezadoSitio() {
                   href={`#${id}`}
                   onClick={(evento) => navegar(evento, id)}
                   aria-current={activa === id ? 'true' : undefined}
-                  className={`rounded-sm px-3 py-2 text-sm font-medium transition-colors ${
-                    activa === id ? 'bg-gris text-texto' : 'text-suave hover:text-texto'
+                  className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+                    activa === id ? 'bg-primario-suave text-primario' : 'text-suave hover:text-texto'
                   }`}
                 >
                   {etiqueta}
@@ -110,9 +111,11 @@ export function EncabezadoSitio() {
           </ul>
         </nav>
 
-        <div className="hidden items-center gap-2 sm:flex">
-          <AccionesCuenta />
-        </div>
+        <div className="flex items-center gap-2">
+          <BotonTema />
+          <div className="hidden items-center gap-2 sm:flex">
+            <AccionesCuenta />
+          </div>
 
         <button
           type="button"
@@ -120,12 +123,13 @@ export function EncabezadoSitio() {
           aria-expanded={menuAbierto}
           aria-controls="menu-movil"
           aria-label={menuAbierto ? 'Cerrar menú' : 'Abrir menú'}
-          className="grid size-10 cursor-pointer place-items-center rounded-sm border border-borde lg:hidden"
+          className="grid size-10 cursor-pointer place-items-center rounded-lg border border-borde lg:hidden"
         >
           <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="size-5">
             {menuAbierto ? <path d="M6 6l12 12M18 6 6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
           </svg>
         </button>
+        </div>
       </div>
 
       {menuAbierto && (
@@ -136,7 +140,7 @@ export function EncabezadoSitio() {
                 <a
                   href={`#${id}`}
                   onClick={(evento) => navegar(evento, id)}
-                  className="block rounded-sm px-2 py-3 text-base font-medium hover:bg-gris"
+                  className="block rounded-lg px-2 py-3 text-base font-medium hover:bg-superficie-subtil"
                 >
                   {etiqueta}
                 </a>

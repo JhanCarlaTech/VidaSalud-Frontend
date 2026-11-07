@@ -12,7 +12,7 @@ export function ComprobanteCita({ cita, esPersonal, onAgendarOtra }) {
   return (
     <section className="mx-auto flex w-full max-w-xl flex-col gap-6 py-6">
       <div className="flex flex-col items-center gap-3 text-center">
-        <span aria-hidden="true" className="grid size-14 place-items-center rounded-full bg-primario text-white">
+        <span aria-hidden="true" className="grid size-14 place-items-center rounded-full bg-primario text-sobre-primario">
           <svg viewBox="0 0 20 20" className="size-7 fill-current">
             <path d="M7.6 13.6 4 10l-1.4 1.4 5 5 10-10L16.2 5z" />
           </svg>
@@ -23,7 +23,7 @@ export function ComprobanteCita({ cita, esPersonal, onAgendarOtra }) {
         </p>
       </div>
 
-      <dl className="grid gap-4 rounded-md border border-borde bg-white p-6 sm:grid-cols-2">
+      <dl className="grid gap-4 rounded-xl border border-borde bg-superficie p-6 sm:grid-cols-2">
         {esPersonal && (
           <div className="flex flex-col gap-0.5 sm:col-span-2">
             <dt className="text-xs font-medium tracking-wider text-suave uppercase">Paciente</dt>

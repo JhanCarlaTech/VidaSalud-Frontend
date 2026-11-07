@@ -37,7 +37,7 @@ export function Modal({ abierto, titulo, descripcion, onCerrar, pie, ancho = 'md
 
   return createPortal(
     <div
-      className="fixed inset-0 z-50 flex items-end justify-center bg-black/40 sm:items-center sm:p-4"
+      className="fixed inset-0 z-50 flex items-end justify-center bg-velo backdrop-blur-sm sm:items-center sm:p-4"
       onMouseDown={(evento) => evento.target === evento.currentTarget && onCerrar()}
     >
       <div
@@ -46,11 +46,11 @@ export function Modal({ abierto, titulo, descripcion, onCerrar, pie, ancho = 'md
         aria-modal="true"
         aria-labelledby={idTitulo}
         tabIndex={-1}
-        className={`flex max-h-[92vh] w-full ${ancho === 'xl' ? 'max-w-6xl' : 'max-w-xl'} flex-col rounded-t-md bg-white shadow-suave outline-none sm:rounded-md`}
+        className={`flex max-h-[92vh] w-full ${ancho === 'xl' ? 'max-w-6xl' : 'max-w-xl'} flex-col overflow-hidden rounded-t-xl border border-borde bg-superficie shadow-elevada outline-none sm:rounded-xl`}
       >
         <header className="flex items-start justify-between gap-4 border-b border-borde px-6 py-4">
           <div className="flex flex-col gap-1">
-            <h2 id={idTitulo} className="text-lg font-semibold">
+            <h2 id={idTitulo} className="text-xl font-semibold tracking-tight">
               {titulo}
             </h2>
             {descripcion && <p className="text-sm text-suave">{descripcion}</p>}
@@ -59,7 +59,7 @@ export function Modal({ abierto, titulo, descripcion, onCerrar, pie, ancho = 'md
             type="button"
             onClick={onCerrar}
             aria-label="Cerrar"
-            className="-mr-2 grid size-9 shrink-0 cursor-pointer place-items-center rounded-sm text-suave hover:bg-gris hover:text-texto"
+            className="-mr-2 grid size-9 shrink-0 cursor-pointer place-items-center rounded-lg text-suave hover:bg-superficie-subtil hover:text-primario"
           >
             <svg viewBox="0 0 20 20" aria-hidden="true" className="size-4 fill-current">
               <path d="M4.3 4.3a1 1 0 0 1 1.4 0L10 8.6l4.3-4.3a1 1 0 1 1 1.4 1.4L11.4 10l4.3 4.3a1 1 0 0 1-1.4 1.4L10 11.4l-4.3 4.3a1 1 0 0 1-1.4-1.4L8.6 10 4.3 5.7a1 1 0 0 1 0-1.4z" />
@@ -67,7 +67,7 @@ export function Modal({ abierto, titulo, descripcion, onCerrar, pie, ancho = 'md
           </button>
         </header>
 
-        <div className="overflow-y-auto px-6 py-5">{children}</div>
+        <div className="overflow-y-auto overscroll-contain px-6 py-5">{children}</div>
 
         {pie && <footer className="flex flex-col-reverse gap-3 border-t border-borde px-6 py-4 sm:flex-row sm:justify-end">{pie}</footer>}
       </div>

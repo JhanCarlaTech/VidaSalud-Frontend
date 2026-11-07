@@ -50,7 +50,7 @@ export function ReporteDocumento({ reporte, clinica, cargando = false }) {
 
       <section aria-label="Indicadores" className={`grid gap-3 sm:grid-cols-2 ${COLUMNAS_INDICADORES[reporte.resumen.length] ?? 'lg:grid-cols-4'} ${cargando ? 'opacity-60' : ''}`}>
         {reporte.resumen.map((indicador) => (
-          <div key={indicador.clave} className="flex flex-col gap-1 rounded-md border border-borde bg-white px-4 py-3 break-inside-avoid">
+          <div key={indicador.clave} className="flex flex-col gap-1 rounded-xl border border-borde bg-superficie px-4 py-3 break-inside-avoid">
             <span className="text-xs font-medium tracking-wider text-suave uppercase">{indicador.etiqueta}</span>
             <span className="text-2xl font-semibold tabular-nums">{formatearValor(indicador.valor, indicador.formato)}</span>
           </div>

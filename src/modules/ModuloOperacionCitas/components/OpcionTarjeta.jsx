@@ -10,7 +10,7 @@ export function OpcionTarjeta({ seleccionada, onSeleccionar, disabled = false, c
       aria-checked={seleccionada}
       onClick={onSeleccionar}
       disabled={disabled}
-      className={`flex h-full w-full cursor-pointer flex-col items-start gap-1 rounded-md border bg-white p-4 text-left transition-colors disabled:cursor-not-allowed disabled:opacity-60 ${
+      className={`flex h-full w-full cursor-pointer flex-col items-start gap-1 rounded-xl border bg-superficie p-4 text-left transition-colors disabled:cursor-not-allowed disabled:opacity-60 ${
         seleccionada ? 'border-primario ring-1 ring-primario' : 'border-borde hover:border-sutil'
       }`}
     >

@@ -14,7 +14,7 @@ import { useAntecedentesPage } from './AntecedentesPage'
 /** Cabecera con los datos de identificación del paciente elegido. */
 function FichaPaciente({ paciente, onCambiar }) {
   return (
-    <div className="flex flex-col gap-4 rounded-md border border-borde bg-white p-5 sm:flex-row sm:items-center sm:justify-between">
+    <div className="flex flex-col gap-4 rounded-xl border border-borde bg-superficie p-5 sm:flex-row sm:items-center sm:justify-between">
       <div className="flex flex-col gap-1">
         <p className="flex flex-wrap items-center gap-2 text-lg font-semibold">
           {paciente.nombre_completo}

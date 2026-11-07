@@ -87,7 +87,7 @@ export function NotificacionesPage() {
       {pagina.aviso && <Alert>{pagina.aviso}</Alert>}
       {pagina.error && <Alert variante="error">{pagina.error}</Alert>}
 
-      <div className="flex flex-col gap-4 rounded-md border border-borde bg-white p-4">
+      <div className="flex flex-col gap-4 rounded-xl border border-borde bg-superficie p-4">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <Input etiqueta="Paciente" name="buscar" type="search" placeholder="Nombre, CI o código" value={filtros.buscar} onChange={pagina.cambiarFiltro} />
           <Select etiqueta="Tipo" name="tipo" value={filtros.tipo} onChange={pagina.cambiarFiltro} opciones={[{ valor: '', etiqueta: 'Todos' }, ...pagina.tipos]} />

@@ -1,8 +1,13 @@
 import { useState } from 'react'
 import { useAviso } from '../../../../shared/hooks/useAviso'
-import { registrarPago } from '../../services/pago.service'
+import { useConsulta } from '../../../../shared/hooks/useConsulta'
+import { listarMetodosPago, registrarPago } from '../../services/pago.service'
 
 export function useRegistrarPagoPage() {
+  // El pago con tarjeta se cobra en línea con Stripe; aquí solo los métodos que se verifican a mano.
+  const { datos } = useConsulta(listarMetodosPago)
+  const metodos = (datos ?? []).filter((metodo) => !metodo.en_linea)
+
   const [formData, setFormData] = useState({
     id_cita: '',
     id_metodo_pago: '1',
@@ -36,5 +41,5 @@ export function useRegistrarPagoPage() {
     }
   }
 
-  return { formData, handleChange, handleSubmit, guardando, error, aviso }
+  return { formData, handleChange, handleSubmit, guardando, error, aviso, metodos }
 }

@@ -14,7 +14,7 @@ export function SeccionPortada({ totalEspecialidades, onAgendar }) {
     <section id="inicio" className="fondo-puntos relative overflow-hidden border-b border-borde">
       <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.1fr_1fr] lg:py-24">
         <Revelar className="flex flex-col gap-8">
-          <span className="inline-flex w-fit items-center gap-2 rounded-full border border-borde bg-white px-3 py-1 text-xs font-semibold tracking-wider text-suave uppercase">
+          <span className="inline-flex w-fit items-center gap-2 rounded-full border border-borde bg-superficie px-3 py-1 text-xs font-semibold tracking-wider text-suave uppercase">
             <span aria-hidden="true" className="size-2 animate-pulse rounded-full bg-primario" />
             Reservas en línea abiertas
           </span>
@@ -35,7 +35,7 @@ export function SeccionPortada({ totalEspecialidades, onAgendar }) {
             <button
               type="button"
               onClick={onAgendar}
-              className="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-sm bg-primario px-7 text-sm font-semibold text-white transition-colors hover:bg-primario-hover"
+              className="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-lg bg-primario px-7 text-sm font-semibold text-sobre-primario transition-colors hover:bg-primario-hover"
             >
               Agendar cita
               <svg aria-hidden="true" viewBox="0 0 20 20" fill="currentColor" className="size-4">
@@ -45,7 +45,7 @@ export function SeccionPortada({ totalEspecialidades, onAgendar }) {
             <button
               type="button"
               onClick={() => irASeccion('especialidades')}
-              className="inline-flex min-h-12 cursor-pointer items-center justify-center rounded-sm border border-borde bg-white px-7 text-sm font-semibold transition-colors hover:border-primario"
+              className="inline-flex min-h-12 cursor-pointer items-center justify-center rounded-lg border border-borde bg-superficie px-7 text-sm font-semibold transition-colors hover:border-primario"
             >
               Ver especialidades
             </button>
@@ -69,16 +69,16 @@ export function SeccionPortada({ totalEspecialidades, onAgendar }) {
 
         <Revelar retraso={150} className="relative">
           <div className="aspect-[6/7] w-full">
-            <EspacioImagen src={IMAGENES_SITIO.portada} descripcion="Foto principal de la clínica" tamano="1200 × 1400" />
+            <EspacioImagen src={IMAGENES_SITIO.portada} descripcion="Fachada de la Clínica Vida Salud" tamano="1200 × 1400" prioridad />
           </div>
 
           {/* Tarjeta flotante: los pasos de la reserva */}
-          <div className="absolute -bottom-6 left-4 right-4 rounded-md border border-borde bg-white p-4 shadow-suave sm:left-auto sm:right-[-12px] sm:w-64">
+          <div className="absolute -bottom-6 left-4 right-4 rounded-xl border border-borde bg-superficie p-4 shadow-suave sm:left-auto sm:right-[-12px] sm:w-64">
             <p className="text-xs font-semibold tracking-wider text-suave uppercase">Reserve en 4 pasos</p>
             <ol className="mt-3 flex flex-col gap-2">
               {PASOS.map((paso, indice) => (
                 <li key={paso} className="flex items-center gap-3 text-sm">
-                  <span className="grid size-6 shrink-0 place-items-center rounded-full bg-primario text-xs font-semibold text-white">
+                  <span className="grid size-6 shrink-0 place-items-center rounded-full bg-primario text-xs font-semibold text-sobre-primario">
                     {indice + 1}
                   </span>
                   {paso}

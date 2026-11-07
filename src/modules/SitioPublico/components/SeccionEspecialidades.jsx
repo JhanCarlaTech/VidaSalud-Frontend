@@ -30,11 +30,11 @@ export function SeccionEspecialidades({ especialidades, cargando, error, onReser
 
               return (
                 <Revelar as="li" key={especialidad.id} retraso={(indice % 3) * 90}>
-                  <article className="group flex h-full flex-col gap-5 rounded-md border border-borde bg-white p-6 transition-all hover:-translate-y-1 hover:border-primario hover:shadow-suave">
+                  <article className="group flex h-full flex-col gap-5 rounded-xl border border-borde bg-superficie p-6 transition-all hover:-translate-y-1 hover:border-primario hover:shadow-suave">
                     <div className="flex items-start justify-between gap-4">
                       <span
                         aria-hidden="true"
-                        className="grid size-11 place-items-center rounded-md bg-gris text-lg font-bold transition-colors group-hover:bg-primario group-hover:text-white"
+                        className="grid size-11 place-items-center rounded-xl bg-gris text-lg font-bold transition-colors group-hover:bg-primario group-hover:text-sobre-primario"
                       >
                         {especialidad.nombre.charAt(0)}
                       </span>

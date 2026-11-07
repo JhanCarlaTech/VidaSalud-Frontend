@@ -77,7 +77,7 @@ export function BitacoraPage() {
       {pagina.errorExportacion && <Alert variante="error">{pagina.errorExportacion}</Alert>}
       {pagina.error && <Alert variante="error">{pagina.error}</Alert>}
 
-      <div className="flex flex-col gap-4 rounded-md border border-borde bg-white p-4">
+      <div className="flex flex-col gap-4 rounded-xl border border-borde bg-superficie p-4">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Input
             etiqueta="Usuario"

@@ -17,10 +17,10 @@ export function Indicador({ indicador }) {
   const empeora = (sube && indicador.mejor === 'baja') || (baja && indicador.mejor === 'sube')
 
   return (
-    <div className="flex flex-col gap-1 rounded-md border border-borde bg-white px-4 py-3">
+    <div className="flex flex-col gap-1 rounded-xl border border-borde bg-superficie px-4 py-3">
       <span className="text-sm text-suave">{indicador.etiqueta}</span>
       {/* Cifras proporcionales en el valor grande (no tabulares). */}
-      <span className="text-3xl font-semibold">{formatearValor(indicador.valor, indicador.formato)}</span>
+      <span className="text-2xl font-semibold [overflow-wrap:anywhere] 2xl:text-3xl">{formatearValor(indicador.valor, indicador.formato)}</span>
       <span className={`text-xs ${empeora ? 'text-peligro' : 'text-suave'}`}>
         {variacion === null ? (
           'Sin datos para comparar'

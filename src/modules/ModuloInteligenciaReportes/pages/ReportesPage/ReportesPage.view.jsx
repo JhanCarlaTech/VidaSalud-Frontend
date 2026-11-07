@@ -39,12 +39,12 @@ export function ReportesPage() {
               role="radio"
               aria-checked={elegido}
               onClick={() => pagina.elegirTipo(reporte.tipo)}
-              className={`flex cursor-pointer flex-col gap-1 rounded-md border p-4 text-left transition-colors ${
-                elegido ? 'border-primario bg-primario text-white' : 'border-borde bg-white hover:border-primario'
+              className={`flex cursor-pointer flex-col gap-1 rounded-xl border p-4 text-left transition-colors ${
+                elegido ? 'border-primario bg-primario text-sobre-primario' : 'border-borde bg-superficie hover:border-primario'
               }`}
             >
               <span className="font-semibold">{reporte.titulo}</span>
-              <span className={`text-xs ${elegido ? 'text-white/80' : 'text-suave'}`}>{reporte.descripcion}</span>
+              <span className={`text-xs ${elegido ? 'text-sobre-primario/80' : 'text-suave'}`}>{reporte.descripcion}</span>
             </button>
           )
         })}
@@ -52,7 +52,7 @@ export function ReportesPage() {
 
       {/* Filtros */}
       {definicion && (
-        <div className="flex flex-col gap-4 rounded-md border border-borde bg-white p-4">
+        <div className="flex flex-col gap-4 rounded-xl border border-borde bg-superficie p-4">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <Input etiqueta="Desde" name="desde" type="date" value={pagina.periodo.desde} max={pagina.periodo.hasta || undefined} onChange={pagina.cambiarPeriodo} />
             <Input

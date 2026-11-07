@@ -50,13 +50,13 @@ export function BuscadorPaciente({ onElegir }) {
       {vigentes && !resultado.error && resultado.pacientes.length === 0 && <p className="text-sm text-suave">Ningún paciente coincide con «{termino}».</p>}
 
       {vigentes && resultado.pacientes.length > 0 && (
-        <ul className="flex flex-col divide-y divide-borde rounded-md border border-borde bg-white" aria-label="Pacientes encontrados">
+        <ul className="flex flex-col divide-y divide-borde rounded-xl border border-borde bg-superficie" aria-label="Pacientes encontrados">
           {resultado.pacientes.map((paciente) => (
             <li key={paciente.id}>
               <button
                 type="button"
                 onClick={() => onElegir(paciente)}
-                className="flex w-full cursor-pointer items-center justify-between gap-4 px-4 py-3 text-left hover:bg-superficie"
+                className="flex w-full cursor-pointer items-center justify-between gap-4 px-4 py-3 text-left hover:bg-superficie-subtil"
               >
                 <span className="flex flex-col">
                   <span className="font-semibold">{paciente.nombre_completo}</span>

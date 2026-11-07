@@ -19,7 +19,7 @@ export function RegistrarConsultaPage() {
       {pagina.aviso && <Alert>{pagina.aviso}</Alert>}
       {pagina.error && <Alert variante="error">{pagina.error}</Alert>}
 
-      <form onSubmit={pagina.handleSubmit} className="flex flex-col gap-5 bg-fondo-suave p-6 rounded-lg border">
+      <form onSubmit={pagina.handleSubmit} className="flex flex-col gap-5 rounded-xl border border-borde bg-superficie p-6 shadow-suave">
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Input 
@@ -85,7 +85,7 @@ export function RegistrarConsultaPage() {
             onChange={pagina.handleChange} 
             rows="3" 
             placeholder="Describa los síntomas del paciente..."
-            className="border p-2 rounded bg-white focus:outline-none focus:ring-2 focus:ring-primario" 
+            className="min-h-11 rounded-lg border border-borde bg-superficie px-3.5 py-2.5 text-texto focus:border-primario focus:outline-none focus:ring-2 focus:ring-primario/20" 
           />
         </div>
 
@@ -97,7 +97,7 @@ export function RegistrarConsultaPage() {
             onChange={pagina.handleChange} 
             rows="3" 
             placeholder="Indique el tratamiento a seguir..."
-            className="border p-2 rounded bg-white focus:outline-none focus:ring-2 focus:ring-primario" 
+            className="min-h-11 rounded-lg border border-borde bg-superficie px-3.5 py-2.5 text-texto focus:border-primario focus:outline-none focus:ring-2 focus:ring-primario/20" 
           />
         </div>
 

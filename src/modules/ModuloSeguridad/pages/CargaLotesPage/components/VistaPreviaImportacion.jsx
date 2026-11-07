@@ -7,7 +7,7 @@ import { etiquetaRol, formatearFecha } from '../../../../../shared/utils/formatt
 /** Contador del resumen de la validación. */
 function Contador({ etiqueta, valor, destacado = false }) {
   return (
-    <div className={`flex flex-col gap-1 rounded-md border px-4 py-3 ${destacado ? 'border-peligro' : 'border-borde'}`}>
+    <div className={`flex flex-col gap-1 rounded-xl border px-4 py-3 ${destacado ? 'border-peligro' : 'border-borde'}`}>
       <span className="text-xs font-medium tracking-wider text-suave uppercase">{etiqueta}</span>
       <span className={`text-2xl font-semibold ${destacado ? 'text-peligro' : ''}`}>{valor}</span>
     </div>

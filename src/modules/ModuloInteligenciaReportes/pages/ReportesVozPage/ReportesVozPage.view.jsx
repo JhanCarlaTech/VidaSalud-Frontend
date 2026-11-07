@@ -31,7 +31,7 @@ export function ReportesVozPage() {
         <p className="text-suave">Pida un reporte con sus palabras: el sistema lo interpreta, lo genera y le lee el resumen.</p>
       </header>
 
-      <div className="flex flex-col gap-4 rounded-md border border-borde bg-white p-5">
+      <div className="flex flex-col gap-4 rounded-xl border border-borde bg-superficie p-5">
         <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
           {dictado.soportado ? (
             <button
@@ -41,7 +41,7 @@ export function ReportesVozPage() {
               aria-pressed={dictado.escuchando}
               aria-label={dictado.escuchando ? 'Dejar de escuchar' : 'Dictar consulta'}
               className={`grid size-16 shrink-0 cursor-pointer place-items-center rounded-full border-2 transition-colors disabled:cursor-not-allowed disabled:opacity-60 ${
-                dictado.escuchando ? 'animate-pulse border-peligro bg-peligro text-white' : 'border-primario bg-primario text-white hover:bg-primario-hover'
+                dictado.escuchando ? 'animate-pulse border-peligro bg-peligro text-sobre-peligro' : 'border-primario bg-primario text-sobre-primario hover:bg-primario-hover'
               }`}
             >
               <IconoMicrofono />
@@ -91,7 +91,7 @@ export function ReportesVozPage() {
       {pagina.enviando && !resultado && <Spinner mensaje="Interpretando la consulta…" />}
 
       {resultado && !resultado.entendido && (
-        <div className="flex flex-col gap-3 rounded-md border border-borde bg-white p-5">
+        <div className="flex flex-col gap-3 rounded-xl border border-borde bg-superficie p-5">
           <p className="font-medium">{resultado.mensaje}</p>
           {resultado.notas.map((nota) => (
             <p key={nota} className="text-sm text-suave">
@@ -105,7 +105,7 @@ export function ReportesVozPage() {
       {resultado?.entendido && (
         <div className={`flex flex-col gap-6 ${pagina.enviando ? 'opacity-60' : ''}`}>
           {/* Lo que se entendió: el usuario puede comprobar la interpretación antes de usar los datos. */}
-          <section className="flex flex-col gap-3 rounded-md border border-primario bg-white p-5" aria-label="Interpretación">
+          <section className="flex flex-col gap-3 rounded-xl border border-primario bg-superficie p-5" aria-label="Interpretación">
             <div className="flex flex-wrap items-center justify-between gap-2">
               <p className="text-sm text-suave">
                 «{resultado.consulta}»

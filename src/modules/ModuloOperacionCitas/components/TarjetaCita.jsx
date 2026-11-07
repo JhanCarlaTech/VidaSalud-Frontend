@@ -13,9 +13,9 @@ export function TarjetaCita({ cita, acciones }) {
   const cancelada = cita.estado === 'Cancelada'
 
   return (
-    <article className="flex flex-col gap-4 rounded-md border border-borde bg-white p-4 sm:flex-row sm:items-center">
+    <article className="flex flex-col gap-4 rounded-xl border border-borde bg-superficie p-4 sm:flex-row sm:items-center">
       <div
-        className={`flex w-16 shrink-0 flex-col items-center rounded-sm py-2 ${cancelada ? 'bg-gris text-suave' : 'bg-primario text-white'}`}
+        className={`flex w-16 shrink-0 flex-col items-center rounded-lg py-2 ${cancelada ? 'bg-gris text-suave' : 'bg-primario text-sobre-primario'}`}
         aria-hidden="true"
       >
         <span className="text-xs uppercase">{FORMATO_MES.format(fecha)}</span>

@@ -26,7 +26,7 @@ export function HistorialClinico({ historial, cargandoConsultas, onCambiarPagina
 
   return (
     <div className="flex flex-col gap-8">
-      <section className="flex flex-col gap-4 rounded-md border border-borde bg-white p-5">
+      <section className="flex flex-col gap-4 rounded-xl border border-borde bg-superficie p-5">
         <div className="flex flex-wrap items-center gap-2">
           <h2 className="text-xl font-semibold">{paciente.nombre_completo}</h2>
           {!paciente.activo && <Badge variante="contorno">Inactivo</Badge>}
@@ -52,7 +52,7 @@ export function HistorialClinico({ historial, cargandoConsultas, onCambiarPagina
         {antecedentes.length === 0 ? (
           <p className="text-sm text-suave">No hay antecedentes registrados.</p>
         ) : (
-          <ul className="flex flex-col divide-y divide-borde rounded-md border border-borde bg-white">
+          <ul className="flex flex-col divide-y divide-borde rounded-xl border border-borde bg-superficie">
             {antecedentes.map((antecedente) => (
               <li key={antecedente.enfermedad.id} className="flex flex-col gap-1 px-4 py-3">
                 <div className="flex flex-wrap items-center gap-2">

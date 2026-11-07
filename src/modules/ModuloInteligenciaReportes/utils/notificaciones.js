@@ -6,12 +6,12 @@ export const ETIQUETA_CORREO = Object.freeze({
   fallido: 'Correo fallido',
 })
 
-/** @type {Record<string, 'solido' | 'neutro' | 'contorno'>} */
+/** @type {Record<string, 'advertencia' | 'exito' | 'neutro' | 'peligro'>} */
 export const VARIANTE_CORREO = Object.freeze({
-  pendiente: 'neutro',
-  enviado: 'contorno',
-  omitido: 'contorno',
-  fallido: 'solido',
+  pendiente: 'advertencia',
+  enviado: 'exito',
+  omitido: 'neutro',
+  fallido: 'peligro',
 })
 
 /** Estados que Recepción puede reenviar (RN06). */

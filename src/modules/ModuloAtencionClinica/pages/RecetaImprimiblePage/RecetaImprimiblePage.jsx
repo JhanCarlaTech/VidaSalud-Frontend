@@ -17,7 +17,7 @@ export function RecetaImprimiblePage() {
   const { datos: receta, error, cargando } = useConsulta(() => obtenerReceta(id), id)
 
   return (
-    <main className="min-h-screen bg-superficie px-4 py-8 print:bg-white print:p-0">
+    <main className="papel min-h-screen bg-superficie-subtil px-4 py-8 print:bg-white print:p-0">
       <div className="mx-auto mb-6 flex max-w-3xl flex-wrap items-center justify-between gap-3 print:hidden">
         <Button variante="secundario" onClick={() => navigate(-1)}>
           ← Volver

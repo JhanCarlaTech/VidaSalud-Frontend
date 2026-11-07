@@ -1,29 +1,117 @@
 @import 'tailwindcss';
 
 /*
- * Tokens de diseño – Minimalista Monocromático Premium (Diseño/Diseño frontend.md).
- * Tailwind v4 genera una utilidad por token: bg-primario, text-suave, border-borde, etc.
+ * Sistema de diseño – Clínica Vida Salud.
+ * Modo claro: blanco y azul. Modo oscuro (clase .dark en <html>): negro y azul.
+ *
+ * Los valores viven en variables CSS (:root / .dark) y Tailwind genera una
+ * utilidad por token (bg-primario, text-suave, border-borde, bg-exito-fondo…).
+ * Los componentes nunca usan hexadecimales: cambian de modo sin tocar su código.
  */
-@theme {
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* .papel: los documentos imprimibles usan siempre los tokens claros (papel blanco). */
+:root,
+.papel {
+  color-scheme: light;
+
+  --vs-fondo: #f8fafc; /* slate-50: fondo de la aplicación */
+  --vs-superficie: #ffffff; /* tarjetas, tablas, modales e inputs */
+  --vs-superficie-subtil: #f1f5f9; /* slate-100: barra lateral, encabezados de tabla, hover */
+
+  /* sky-700 y no sky-600: con texto blanco, sky-600 da 4,1:1 (no llega a AA); sky-700 da 5,9:1. */
+  --vs-primario: #0369a1; /* acciones principales, enlaces, foco */
+  --vs-primario-hover: #075985; /* sky-800 */
+  --vs-primario-suave: #e0f2fe; /* sky-100: selección e insignias */
+  --vs-sobre-primario: #ffffff; /* texto sobre fondo primario */
+  /* Paneles grandes de marca (pie del sitio, lateral de login y registro). */
+  --vs-marca: #0c4a6e; /* sky-900 */
+  --vs-sobre-marca: #ffffff;
+
+  --vs-texto: #0f172a; /* slate-900 */
+  --vs-suave: #475569; /* slate-600: texto secundario */
+  --vs-sutil: #94a3b8; /* slate-400: placeholders e íconos inactivos */
+  --vs-borde: #e2e8f0; /* slate-200 */
+
+  /* Tonos -700: los -600 no llegan a 4,5:1 sobre su propio fondo claro. */
+  --vs-exito: #15803d;
+  --vs-exito-fondo: #dcfce7;
+  --vs-advertencia: #b45309;
+  --vs-advertencia-fondo: #fef3c7;
+  --vs-peligro: #b91c1c;
+  --vs-peligro-fondo: #fee2e2;
+  --vs-sobre-peligro: #ffffff; /* texto sobre fondo rojo (contadores, botón eliminar) */
+
+  --vs-sombra-suave: 0 1px 2px rgb(15 23 42 / 0.04), 0 4px 16px rgb(12 74 110 / 0.06);
+  --vs-sombra-elevada: 0 10px 40px rgb(12 74 110 / 0.12);
+  --vs-velo: rgb(15 23 42 / 0.6); /* fondo detrás de los modales */
+}
+
+.dark {
+  color-scheme: dark;
+
+  --vs-fondo: #090d16;
+  --vs-superficie: #111827; /* gray-900 */
+  --vs-superficie-subtil: #1f2937; /* gray-800 */
+
+  --vs-primario: #38bdf8; /* sky-400 */
+  --vs-primario-hover: #7dd3fc; /* sky-300 */
+  --vs-primario-suave: #082f49; /* sky-950 */
+  --vs-sobre-primario: #04121f; /* texto oscuro sobre el azul claro */
+  --vs-marca: #0b1a2e; /* azul noche: un bloque grande en sky-400 deslumbraría */
+  --vs-sobre-marca: #f8fafc;
+
+  --vs-texto: #f8fafc;
+  --vs-suave: #94a3b8;
+  --vs-sutil: #64748b;
+  --vs-borde: #1e293b;
+
+  --vs-exito: #4ade80;
+  --vs-exito-fondo: #052e16;
+  --vs-advertencia: #fbbf24;
+  --vs-advertencia-fondo: #451a03;
+  --vs-peligro: #f87171;
+  --vs-peligro-fondo: #450a0a;
+  --vs-sobre-peligro: #1c0505;
+
+  /* En oscuro la elevación se logra con capas y bordes, no con sombras. */
+  --vs-sombra-suave: none;
+  --vs-sombra-elevada: 0 0 0 1px var(--vs-borde);
+  --vs-velo: rgb(0 0 0 / 0.7);
+}
+
+@theme inline {
   --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
-  --color-primario: #000000; /* Botones principales y estados activos */
-  --color-primario-hover: #27272a;
-  --color-fondo: #ffffff; /* Fondo de la página */
-  --color-superficie: #fafafa; /* Paneles y modales */
-  --color-gris: #f4f4f5; /* Fondos atenuados */
-  --color-texto: #09090b; /* Texto principal */
-  --color-suave: #71717a; /* Texto secundario */
-  --color-sutil: #a1a1aa; /* Placeholders y detalles */
-  --color-borde: #e4e4e7; /* Bordes y divisores ultra finos */
+  --color-fondo: var(--vs-fondo);
+  --color-superficie: var(--vs-superficie);
+  --color-superficie-subtil: var(--vs-superficie-subtil);
+  /* 'gris': alias histórico de superficie-subtil (chips y fondos atenuados). */
+  --color-gris: var(--vs-superficie-subtil);
 
-  /* Estado de error: único color fuera de la escala de grises, siempre acompañado de texto */
-  --color-peligro: #b91c1c;
-  --color-peligro-fondo: #fef2f2;
+  --color-primario: var(--vs-primario);
+  --color-primario-hover: var(--vs-primario-hover);
+  --color-primario-suave: var(--vs-primario-suave);
+  --color-sobre-primario: var(--vs-sobre-primario);
+  --color-marca: var(--vs-marca);
+  --color-sobre-marca: var(--vs-sobre-marca);
 
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --shadow-suave: 0 4px 20px rgba(0, 0, 0, 0.05);
+  --color-texto: var(--vs-texto);
+  --color-suave: var(--vs-suave);
+  --color-sutil: var(--vs-sutil);
+  --color-borde: var(--vs-borde);
+
+  --color-exito: var(--vs-exito);
+  --color-exito-fondo: var(--vs-exito-fondo);
+  --color-advertencia: var(--vs-advertencia);
+  --color-advertencia-fondo: var(--vs-advertencia-fondo);
+  --color-peligro: var(--vs-peligro);
+  --color-peligro-fondo: var(--vs-peligro-fondo);
+  --color-sobre-peligro: var(--vs-sobre-peligro);
+  --color-velo: var(--vs-velo);
+
+  --shadow-suave: var(--vs-sombra-suave);
+  --shadow-elevada: var(--vs-sombra-elevada);
 }
 
 @layer base {
@@ -45,8 +133,16 @@
 
   /* Foco visible y de alto contraste para navegación por teclado */
   :focus-visible {
-    outline: 2px solid var(--color-primario);
+    outline: 2px solid var(--vs-primario);
     outline-offset: 2px;
+  }
+
+  /* Cambio de tema sin destellos: solo colores, y nunca con movimiento reducido. */
+  html.cambiando-tema * {
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      color 0.2s ease !important;
   }
 }
 
@@ -67,8 +163,14 @@
 
   /* Trama de puntos de fondo para las secciones destacadas */
   .fondo-puntos {
-    background-image: radial-gradient(var(--color-borde) 1px, transparent 1px);
+    background-image: radial-gradient(var(--vs-borde) 1px, transparent 1px);
     background-size: 22px 22px;
+  }
+
+  /* Hoja de papel para documentos imprimibles: siempre clara, también en modo oscuro. */
+  .papel {
+    background-color: var(--vs-fondo);
+    color: var(--vs-texto);
   }
 }
 
@@ -77,5 +179,15 @@
     opacity: 1;
     transform: none;
     transition: none;
+  }
+
+  html.cambiando-tema * {
+    transition: none !important;
+  }
+}
+
+@media print {
+  .no-imprimir {
+    display: none !important;
   }
 }

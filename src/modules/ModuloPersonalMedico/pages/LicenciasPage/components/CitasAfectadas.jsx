@@ -13,12 +13,12 @@ export function CitasAfectadas({ citas }) {
   if (citas.length === 0) return null
 
   return (
-    <div className="flex flex-col gap-3 rounded-sm border border-peligro bg-peligro-fondo px-4 py-3">
+    <div className="flex flex-col gap-3 rounded-lg border border-peligro bg-peligro-fondo px-4 py-3">
       <p className="text-sm font-medium text-peligro">
         {citas.length === 1 ? 'Hay 1 cita pendiente' : `Hay ${citas.length} citas pendientes`} dentro de este periodo.
       </p>
 
-      <ul className="flex flex-col divide-y divide-borde rounded-sm border border-borde bg-white text-sm">
+      <ul className="flex flex-col divide-y divide-borde rounded-lg border border-borde bg-superficie text-sm">
         {citas.map((cita) => (
           <li key={cita.id} className="flex flex-col gap-0.5 px-3 py-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
             <span>
