@@ -6,6 +6,7 @@ import { Spinner } from '../../../../shared/components/ui/Spinner'
 import { Toggle } from '../../../../shared/components/ui/Toggle'
 import { RUTAS } from '../../../../shared/utils/constants'
 import { formatearDia, formatearFechaHora } from '../../../../shared/utils/formatters'
+import { PanelPush } from '../../components/PanelPush'
 import { useMisNotificacionesPage } from './MisNotificacionesPage'
 
 /**
@@ -31,6 +32,8 @@ export function MisNotificacionesPage() {
           Marcar todas como leídas
         </Button>
       </header>
+
+      <PanelPush />
 
       {pagina.aviso && <Alert>{pagina.aviso}</Alert>}
       {pagina.error && <Alert variante="error">{pagina.error}</Alert>}

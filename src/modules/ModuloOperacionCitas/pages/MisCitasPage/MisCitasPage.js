@@ -9,11 +9,11 @@ export const PERIODOS = [
 
 /**
  * Lógica de "Mis citas" (CU13, flujo 7): citas próximas e historial del paciente,
- * con las acciones de reprogramar y cancelar (CU14).
+ * con las acciones de reprogramar y cancelar (CU14) y de pagar (CU24).
  */
 export function useMisCitasPage() {
   const [periodo, setPeriodo] = useState(PERIODOS[0].clave)
-  // modal = null | { tipo: 'reprogramar' | 'cancelar', cita: object }
+  // modal = null | { tipo: 'reprogramar' | 'cancelar' | 'pagar', cita: object }
   const [modal, setModal] = useState(null)
   const [aviso, setAviso] = useAviso()
   const { citas, cargando, error, recargar } = useMisCitas(periodo)
@@ -34,6 +34,7 @@ export function useMisCitasPage() {
     modal,
     abrirReprogramacion: (cita) => setModal({ tipo: 'reprogramar', cita }),
     abrirCancelacion: (cita) => setModal({ tipo: 'cancelar', cita }),
+    abrirPago: (cita) => setModal({ tipo: 'pagar', cita }),
     cerrarModal: () => setModal(null),
     finalizarOperacion,
   }

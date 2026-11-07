@@ -4,26 +4,40 @@ import { Button } from '../../../../shared/components/ui/Button'
 import { Spinner } from '../../../../shared/components/ui/Spinner'
 import { RUTAS } from '../../../../shared/utils/constants'
 import { CancelarCitaModal } from '../../components/CancelarCitaModal'
+import { PagarCitaModal } from '../../components/PagarCitaModal'
 import { ReprogramarCitaModal } from '../../components/ReprogramarCitaModal'
 import { TarjetaCita } from '../../components/TarjetaCita'
-import { puedeModificar } from '../../utils/citas'
+import { puedeModificar, puedePagar } from '../../utils/citas'
 import { PERIODOS, useMisCitasPage } from './MisCitasPage'
 
-/** Acciones de CU14 para una cita propia, según la anticipación permitida al paciente. */
-function AccionesCita({ cita, onReprogramar, onCancelar }) {
+/**
+ * Acciones de una cita propia: pagar (CU24) y reprogramar o cancelar (CU14, según
+ * la anticipación permitida al paciente). Pagar sigue disponible aunque ya no se pueda modificar.
+ */
+function AccionesCita({ cita, onPagar, onReprogramar, onCancelar }) {
   const { permitido, motivo } = puedeModificar(cita, false)
+  const pagar = puedePagar(cita)
 
-  if (motivo) return <p className="max-w-48 text-xs text-suave">{motivo}</p>
-  if (!permitido) return null
+  if (!pagar && !permitido && !motivo) return null
 
   return (
     <>
-      <Button variante="secundario" tamano="sm" onClick={() => onReprogramar(cita)}>
-        Reprogramar
-      </Button>
-      <Button variante="secundario" tamano="sm" onClick={() => onCancelar(cita)}>
-        Cancelar
-      </Button>
+      {pagar && (
+        <Button tamano="sm" onClick={() => onPagar(cita)}>
+          Pagar
+        </Button>
+      )}
+      {permitido && (
+        <>
+          <Button variante="secundario" tamano="sm" onClick={() => onReprogramar(cita)}>
+            Reprogramar
+          </Button>
+          <Button variante="secundario" tamano="sm" onClick={() => onCancelar(cita)}>
+            Cancelar
+          </Button>
+        </>
+      )}
+      {motivo && <p className="max-w-48 text-xs text-suave">{motivo}</p>}
     </>
   )
 }
@@ -76,7 +90,14 @@ export function MisCitasPage() {
             <li key={cita.id}>
               <TarjetaCita
                 cita={cita}
-                acciones={<AccionesCita cita={cita} onReprogramar={pagina.abrirReprogramacion} onCancelar={pagina.abrirCancelacion} />}
+                acciones={
+                  <AccionesCita
+                    cita={cita}
+                    onPagar={pagina.abrirPago}
+                    onReprogramar={pagina.abrirReprogramacion}
+                    onCancelar={pagina.abrirCancelacion}
+                  />
+                }
               />
             </li>
           ))}
@@ -85,6 +106,9 @@ export function MisCitasPage() {
 
       {pagina.modal?.tipo === 'reprogramar' && (
         <ReprogramarCitaModal cita={pagina.modal.cita} onCerrar={pagina.cerrarModal} onReprogramada={pagina.finalizarOperacion} />
+      )}
+      {pagina.modal?.tipo === 'pagar' && (
+        <PagarCitaModal cita={pagina.modal.cita} onCerrar={pagina.cerrarModal} onPagada={pagina.finalizarOperacion} />
       )}
       {pagina.modal?.tipo === 'cancelar' && (
         <CancelarCitaModal cita={pagina.modal.cita} onCerrar={pagina.cerrarModal} onCancelada={pagina.finalizarOperacion} />

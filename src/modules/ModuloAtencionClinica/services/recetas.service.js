@@ -29,6 +29,16 @@ export async function emitirReceta(idConsulta, datos) {
   return httpClient.post(`/consultas/${idConsulta}/recetas`, datos)
 }
 
+/**
+ * "Mis recetas" del paciente autenticado, de la más reciente a la más antigua.
+ * @returns {Promise<{ items: object[], meta: object }>}
+ */
+export async function listarMisRecetas({ buscar = '', page = 1 } = {}) {
+  const params = { page, ...(buscar ? { buscar } : {}) }
+  const respuesta = await httpClient.get('/mis-recetas', { params })
+  return respuesta.data
+}
+
 /** Receta completa para verla o imprimirla (médico emisor o el propio paciente). */
 export async function obtenerReceta(idReceta) {
   const respuesta = await httpClient.get(`/recetas/${idReceta}`)

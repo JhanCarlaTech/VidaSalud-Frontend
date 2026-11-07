@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import { HistorialPage } from './modules/ModuloAtencionClinica/pages/HistorialPage'
+import { MisRecetasPage } from './modules/ModuloAtencionClinica/pages/MisRecetasPage'
 import { MisPacientesPage } from './modules/ModuloAtencionClinica/pages/MisPacientesPage'
 import { RecetaImprimiblePage } from './modules/ModuloAtencionClinica/pages/RecetaImprimiblePage'
 import { RecetasPage } from './modules/ModuloAtencionClinica/pages/RecetasPage'
@@ -131,6 +132,7 @@ export default function App() {
               <Route path={RUTAS.PACIENTE_INICIO} element={<InicioPage titulo="Mi espacio de salud" descripcion="Sus citas, reservas e historial de atenciones." />} />
               <Route path={RUTAS.PACIENTE_FICHA} element={<MiFichaPage />} />
               <Route path={RUTAS.PACIENTE_HISTORIAL} element={<HistorialPage propio />} />
+              <Route path={RUTAS.PACIENTE_RECETAS} element={<MisRecetasPage />} />
               <Route path={RUTAS.PACIENTE_NOTIFICACIONES} element={<MisNotificacionesPage />} />
               <Route path={RUTAS.PACIENTE_CITA_NUEVA} element={<AgendarCitaPage />} />
               <Route path={RUTAS.PACIENTE_CITAS} element={<MisCitasPage />} />
@@ -165,8 +167,8 @@ export default function App() {
               <Route path={RUTAS.CONSULTA_NUEVA} element={<RegistrarConsultaPage />} />
             </Route>
 
-            {/* CU24 */}
-            <Route element={<ProtectedRoute roles={[ROLES.ADMINISTRADOR, ROLES.RECEPCIONISTA, ROLES.PACIENTE]} />}>
+            {/* CU24 – Registro manual de pagos verificados (recepción). El paciente paga desde "Mis citas". */}
+            <Route element={<ProtectedRoute roles={[ROLES.ADMINISTRADOR, ROLES.RECEPCIONISTA]} />}>
               <Route path={RUTAS.PAGO_NUEVO} element={<RegistrarPagoPage />} />
             </Route>
 

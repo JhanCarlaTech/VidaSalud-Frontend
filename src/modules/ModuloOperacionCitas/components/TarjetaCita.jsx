@@ -1,5 +1,5 @@
 import { Badge } from '../../../shared/components/ui/Badge'
-import { VARIANTE_ESTADO_CITA } from '../utils/citas'
+import { insigniaPago, VARIANTE_ESTADO_CITA } from '../utils/citas'
 
 const FORMATO_MES = new Intl.DateTimeFormat('es-BO', { month: 'short' })
 const FORMATO_DIA_SEMANA = new Intl.DateTimeFormat('es-BO', { weekday: 'short' })
@@ -11,6 +11,7 @@ const FORMATO_DIA_SEMANA = new Intl.DateTimeFormat('es-BO', { weekday: 'short' }
 export function TarjetaCita({ cita, acciones }) {
   const fecha = new Date(`${cita.fecha}T00:00`)
   const cancelada = cita.estado === 'Cancelada'
+  const pago = insigniaPago(cita)
 
   return (
     <article className="flex flex-col gap-4 rounded-xl border border-borde bg-superficie p-4 sm:flex-row sm:items-center">
@@ -29,10 +30,12 @@ export function TarjetaCita({ cita, acciones }) {
             {cita.hora_inicio} – {cita.hora_fin}
           </span>
           <Badge variante={VARIANTE_ESTADO_CITA[cita.estado] ?? 'neutro'}>{cita.estado}</Badge>
+          {pago && <Badge variante={pago.variante}>{pago.texto}</Badge>}
           <span className="text-xs text-suave">{cita.codigo}</span>
         </div>
         <p className="text-sm">
-          {cita.medico.nombre_completo} <span className="text-suave">· {cita.medico.especialidades.join(', ')}</span>
+          {cita.medico.nombre_completo}{' '}
+          <span className="text-suave">· {cita.especialidad?.nombre ?? cita.medico.especialidades.join(', ')}</span>
         </p>
         <p className="text-sm text-suave">
           {cita.modalidad.nombre}
@@ -41,7 +44,7 @@ export function TarjetaCita({ cita, acciones }) {
         {cita.motivo_cancelacion && <p className="text-sm text-suave">Motivo de cancelación: {cita.motivo_cancelacion}</p>}
       </div>
 
-      {acciones && <div className="flex shrink-0 gap-2">{acciones}</div>}
+      {acciones && <div className="flex shrink-0 flex-wrap gap-2">{acciones}</div>}
     </article>
   )
 }

@@ -1,5 +1,6 @@
 import { createContext, useCallback, useEffect, useMemo, useState } from 'react'
 import { EVENTO_SESION_EXPIRADA } from '../../../core/api/http-client'
+import { desvincularDispositivo } from '../../ModuloInteligenciaReportes/services/push.service'
 import { cerrarSesion, iniciarSesion, obtenerSesion, registrarPaciente } from '../services/auth.service'
 
 /** Estado de autenticación compartido. Se consume con el hook useAuth(). */
@@ -51,6 +52,8 @@ export function AuthProvider({ children }) {
 
   const logout = useCallback(async () => {
     try {
+      // CU20: este navegador deja de recibir los avisos push de la cuenta (antes de perder la sesión).
+      await desvincularDispositivo()
       await cerrarSesion()
     } finally {
       setSesion(null)

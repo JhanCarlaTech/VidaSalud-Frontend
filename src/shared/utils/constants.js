@@ -88,6 +88,7 @@ export const RUTAS = Object.freeze({
   MEDICO_HISTORIAL: '/medico/historial',
   MEDICO_HISTORIAL_PACIENTE: '/medico/historial/:id',
   PACIENTE_HISTORIAL: '/paciente/historial',
+  PACIENTE_RECETAS: '/paciente/recetas',
   NOTIFICACIONES: '/notificaciones',
   REPORTES: '/reportes',
   REPORTE_IMPRIMIR: '/reportes/imprimir',
@@ -177,6 +178,6 @@ export const MENU_POR_ROL = Object.freeze({
     { ruta: RUTAS.PACIENTE_CITAS, etiqueta: 'Mis citas', modulo: MODULOS.OPERACION_CITAS },
     { ruta: RUTAS.PACIENTE_FICHA, etiqueta: 'Mi ficha médica', modulo: MODULOS.PACIENTES },
     { ruta: RUTAS.PACIENTE_HISTORIAL, etiqueta: 'Mi historial', modulo: MODULOS.ATENCION_CLINICA },
-    { ruta: RUTAS.PAGO_NUEVO, etiqueta: 'Pagar Cita', modulo: MODULOS.OPERACION_CITAS }, // NUEVO CU24
+    { ruta: RUTAS.PACIENTE_RECETAS, etiqueta: 'Mis recetas', modulo: MODULOS.ATENCION_CLINICA },
   ],
 })

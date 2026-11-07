@@ -35,6 +35,29 @@ export function puedeModificar(cita, esPersonal, ahora = new Date()) {
   return { permitido: true, motivo: null }
 }
 
+/** Estados en los que la cita todavía se puede pagar (CU24). */
+const ESTADOS_COBRABLES = ['Programada', 'Confirmada', 'En Sala de Espera']
+
+/** ¿El paciente puede pagar la cita desde "Mis citas"? */
+export function puedePagar(cita) {
+  return ESTADOS_COBRABLES.includes(cita.estado) && cita.pago?.estado !== 'Completado'
+}
+
+/** Insignia del estado del pago de una cita, o null si no corresponde mostrarla. */
+export function insigniaPago(cita) {
+  if (!('pago' in cita)) return null
+  const { pago } = cita
+  if (!pago) return ESTADOS_COBRABLES.includes(cita.estado) ? { variante: 'neutro', texto: 'Sin pagar' } : null
+  return (
+    {
+      Completado: { variante: 'exito', texto: 'Pagado' },
+      Pendiente: { variante: 'advertencia', texto: pago.en_linea ? 'Pago con tarjeta sin completar' : 'Pago pendiente de verificación' },
+      Rechazado: { variante: 'peligro', texto: 'Pago rechazado' },
+      Reembolsado: { variante: 'neutro', texto: 'Pago reembolsado' },
+    }[pago.estado] ?? null
+  )
+}
+
 /**
  * Variante visual del estado de una cita ('estado_cita_enum'):
  * azul = por atender, ámbar = en curso, verde = resuelta, rojo = no se realizó.

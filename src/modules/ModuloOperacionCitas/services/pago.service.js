@@ -15,6 +15,15 @@ export async function listarMetodosPago() {
   return respuesta.data
 }
 
+/**
+ * Lo necesario para pagar una cita desde "Mis citas".
+ * @returns {Promise<{ pago: object|null, cobrable: boolean, especialidades: { id: number, nombre: string, precio_consulta: number }[] }>}
+ */
+export async function obtenerPagoCita(idCita) {
+  const respuesta = await httpClient.get(`/citas/${idCita}/pago`)
+  return respuesta.data
+}
+
 /* ── Pago con tarjeta (Stripe) ─────────────────────────────────────────── */
 
 /** @returns {Promise<{ habilitado: boolean, clave_publica: string|null, moneda: string }>} */
