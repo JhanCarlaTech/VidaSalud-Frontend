@@ -147,7 +147,7 @@ export function AgendarCitaPage() {
           {asistente.turno && (
             <Paso numero={n + 4} titulo="Modalidad y motivo">
               <div className="flex flex-col gap-5">
-                <div role="radiogroup" aria-label="Modalidad de atención" className="grid gap-3 sm:grid-cols-3">
+                <div role="radiogroup" aria-label="Modalidad de atención" className="grid gap-3 sm:grid-cols-2">
                   {asistente.modalidades.map((modalidad) => (
                     <OpcionTarjeta
                       key={modalidad.id}

@@ -13,10 +13,16 @@ export function useCitasGestion({ buscar = '', estado = '', fecha = '', periodo 
   return { citas: datos?.items ?? [], meta: datos?.meta ?? null, cargando, error, recargar }
 }
 
-/** Catálogo de modalidades de cita (CU13, RN06). */
+/** Modalidades que no se ofrecen al agendar o reprogramar citas. */
+const MODALIDADES_EXCLUIDAS = ['domiciliaria']
+
+/** Catálogo de modalidades de cita (CU13, RN06), sin la atención domiciliaria. */
 export function useModalidades() {
   const { datos, error } = useConsulta(listarModalidades)
-  return { modalidades: datos ?? [], error }
+  const modalidades = (datos ?? []).filter(
+    (modalidad) => !MODALIDADES_EXCLUIDAS.includes(modalidad.nombre.trim().toLowerCase()),
+  )
+  return { modalidades, error }
 }
 
 /** Médicos activos de la especialidad elegida; sin especialidad no consulta. */
